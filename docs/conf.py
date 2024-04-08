@@ -24,8 +24,7 @@ extensions = [
 
 templates_path = ["_templates"]
 exclude_patterns = (
-    ["_build", "Thumbs.db", ".DS_Store"],
-    "notebooks/tutorial*/*_empty.ipynb",
+    ["_build", "Thumbs.db", ".DS_Store", "notebooks/tutorial*/*_empty.ipynb"]
 )
 
 
