@@ -16,20 +16,23 @@
   height: 0 !important;
 }
 
+.bd-footer-content {
+  max-width: 63rem !important;
+}
+
 .form-control {
   border: 2px solid #ccc !important; /* color del borde */
   transition: border-color 0.3s !important; /* transición del color del borde */
 }
 
-.MathJax {
-  margin: 0 auto !important;
-}
-
 .form-control:focus {
-  outline: none;
+  outline: none !important;
 }
 
-
+.MathJax {
+  margin-top: 0rem  !important;
+  margin-bottom: 0.8rem !important;
+}
 
 .theorem {
   border-left: 0.2rem solid #007bff;
