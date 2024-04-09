@@ -1,3 +1,17 @@
-.wy-nav-content {
-	max-width: 1200px !important;
+@media (min-width: 960px) {
+  .bd-page-width {
+    max-width: 100rem !important;
+  }
+}
+
+.bd-sidebar-primary {
+  overflow: auto !important;
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* Internet Explorer 10+ */
+}
+
+.bd-sidebar-primary::-webkit-scrollbar {
+  /* WebKit */
+  width: 0 !important;
+  height: 0 !important;
 }

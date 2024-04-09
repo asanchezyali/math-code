@@ -18,7 +18,6 @@ release = "0.1"
 extensions = [
     "nbsphinx",
     "sphinx.ext.mathjax",
-    "sphinx_rtd_theme",
     "sphinx_gallery.load_style",  # load CSS for gallery (needs SG >= 0.6)
 ]
 
@@ -34,8 +33,29 @@ exclude_patterns = [
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = "sphinx_rtd_theme"
+html_theme = "sphinx_book_theme"
+
+html_theme_options = {
+    "collapse_navigation": True,
+    "sticky_navigation": True,
+    "navigation_depth": 4,
+    "includehidden": True,
+    "titles_only": False,
+    "repository_url": "https://github.com/asanchezyali/math-code",
+    "use_repository_button": True,
+}
+
+html_context = {
+    "display_github": True,
+    "github_user": "asanchezyali",
+    "github_repo": "math-code",
+    "github_version": "main/docs/",
+}
+
+html_title = "MATH / CODE"
+
 html_static_path = ["_static"]
+
 master_doc = "index"
 
 highlight_language = "python3"
