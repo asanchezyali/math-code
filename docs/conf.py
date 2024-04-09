@@ -37,12 +37,10 @@ html_theme = "sphinx_book_theme"
 
 html_theme_options = {
     "collapse_navigation": True,
-    "sticky_navigation": True,
     "navigation_depth": 4,
-    "includehidden": True,
-    "titles_only": False,
     "repository_url": "https://github.com/asanchezyali/math-code",
     "use_repository_button": True,
+    "use_sidenotes": True,
 }
 
 html_context = {
