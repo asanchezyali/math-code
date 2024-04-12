@@ -102,3 +102,73 @@ html[data-theme="dark"] .definition {
 html[data-theme="dark"] .definition p:nth-child(2) {
   background-color: #2c2c2e; /* Ajusta el color de fondo del segundo párrafo */
 }
+
+.example {
+  border-left: 0.2rem solid #28a745;
+  background-color: rgb(243, 248, 243);
+  border-radius: 0.2rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.example p:first-child {
+  display: none;
+}
+
+.example p:nth-child(2) {
+  background-color: rgb(223, 240, 216);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-weight: bold;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.example p {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+html[data-theme="dark"] .example {
+  border-left-color:  #28a745; /* Ajusta el color del borde izquierdo */
+  background-color: #1c1c1e; /* Ajusta el color de fondo */
+}
+
+html[data-theme="dark"] .example p:nth-child(2) {
+  background-color: #2c2c2e; /* Ajusta el color de fondo del segundo párrafo */
+}
+
+.remark {
+  border-left: 0.2rem solid #ffc107;
+  background-color: rgb(255, 248, 231);
+  border-radius: 0.2rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+} 
+
+.remark p:first-child {
+  display: none;
+}
+
+.remark p:nth-child(2) {
+  background-color: rgb(255, 243, 199);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-weight: bold;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.remark p {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+html[data-theme="dark"] .remark {
+  border-left-color: #ffc107; /* Ajusta el color del borde izquierdo */
+  background-color: #1c1c1e; /* Ajusta el color de fondo */
+}
+
+html[data-theme="dark"] .remark p:nth-child(2) {
+  background-color: #2c2c2e; /* Ajusta el color de fondo del segundo párrafo */
+}
