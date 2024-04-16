@@ -172,3 +172,15 @@ html[data-theme="dark"] .remark {
 html[data-theme="dark"] .remark p:nth-child(2) {
   background-color: #2c2c2e; /* Ajusta el color de fondo del segundo párrafo */
 }
+
+@media only screen and (max-width: 600px) {
+  .non-display-mobile {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .non-display-desktop {
+    display: none;
+  }
+}
