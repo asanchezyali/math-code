@@ -24,4 +24,4 @@ If you find the tutorials helpful and would like to cite them, you can use the f
    :caption: Differentiable Programming
    :maxdepth: 2
 
-   notebooks/differentiable-programming/differentiation.ipynb
+   notebooks/differentiable-programming/differentiation-2.ipynb
