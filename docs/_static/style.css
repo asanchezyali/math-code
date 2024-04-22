@@ -42,7 +42,7 @@
   margin-bottom: 1rem;
 }
 
-.theorem p:first-child {
+.theorem > p:first-child {
   display: none;
 }
 .theorem p:nth-child(2) {
@@ -54,7 +54,7 @@
   padding-bottom: 0.5rem;
 }
 
-.theorem p {
+.theorem > p {
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -68,7 +68,6 @@ html[data-theme="dark"] .theorem p:nth-child(2) {
   background-color: #2c2c2e; /* Ajusta el color de fondo del segundo párrafo */
 }
 
-
 .definition {
   border-left: 0.2rem solid #007bff;
   background-color: rgb(238, 243, 254);
@@ -77,7 +76,7 @@ html[data-theme="dark"] .theorem p:nth-child(2) {
   margin-bottom: 1rem;
 }
 
-.definition p:first-child {
+.definition > p:first-child {
   display: none;
 }
 .definition p:nth-child(2) {
@@ -89,7 +88,7 @@ html[data-theme="dark"] .theorem p:nth-child(2) {
   padding-bottom: 0.5rem;
 }
 
-.definition p {
+.definition > p {
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -104,19 +103,19 @@ html[data-theme="dark"] .definition p:nth-child(2) {
 }
 
 .example {
-  border-left: 0.2rem solid #28a745;
-  background-color: rgb(243, 248, 243);
+  border-left: 0.2rem solid #858585;
+  background-color: rgb(255, 255, 255);
   border-radius: 0.2rem;
   overflow: hidden;
   margin-bottom: 1rem;
 }
 
-.example p:first-child {
+.example > p:first-child {
   display: none;
 }
 
 .example p:nth-child(2) {
-  background-color: rgb(223, 240, 216);
+  background-color: rgb(245, 245, 245);
   padding-left: 1rem;
   padding-right: 1rem;
   font-weight: bold;
@@ -124,13 +123,13 @@ html[data-theme="dark"] .definition p:nth-child(2) {
   padding-bottom: 0.5rem;
 }
 
-.example p {
+.example > p {
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
 html[data-theme="dark"] .example {
-  border-left-color:  #28a745; /* Ajusta el color del borde izquierdo */
+  border-left-color: #858585; /* Ajusta el color del borde izquierdo */
   background-color: #1c1c1e; /* Ajusta el color de fondo */
 }
 
@@ -144,9 +143,9 @@ html[data-theme="dark"] .example p:nth-child(2) {
   border-radius: 0.2rem;
   overflow: hidden;
   margin-bottom: 1rem;
-} 
+}
 
-.remark p:first-child {
+.remark > p:first-child {
   display: none;
 }
 
@@ -159,7 +158,7 @@ html[data-theme="dark"] .example p:nth-child(2) {
   padding-bottom: 0.5rem;
 }
 
-.remark p {
+.remark > p {
   padding-left: 1rem;
   padding-right: 1rem;
 }
