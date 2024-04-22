@@ -22,6 +22,6 @@ If you find the tutorials helpful and would like to cite them, you can use the f
 
 .. toctree::
    :caption: Differentiable Programming
-   :maxdepth: 4
+   :maxdepth: 2
 
    notebooks/differentiable-programming/differentiation.ipynb
