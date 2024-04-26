@@ -35,7 +35,7 @@
 }
 
 .theorem {
-  border-left: 0.2rem solid #007bff;
+  border-left: 0.2rem solid #008000; /* Green border */
   background-color: rgb(238, 243, 254);
   border-radius: 0.2rem;
   overflow: hidden;
@@ -45,6 +45,7 @@
 .theorem > p:first-child {
   display: none;
 }
+
 .theorem p:nth-child(2) {
   background-color: rgb(222, 233, 255);
   padding-left: 1rem;
@@ -60,12 +61,12 @@
 }
 
 html[data-theme="dark"] .theorem {
-  border-left-color: #4da6ff; /* Ajusta el color del borde izquierdo */
-  background-color: #1c1c1e; /* Ajusta el color de fondo */
+  border-left-color: #32cd32; /* Adjusts the left border color */
+  background-color: #1c1c1e; /* Adjusts the background color */
 }
 
 html[data-theme="dark"] .theorem p:nth-child(2) {
-  background-color: #2c2c2e; /* Ajusta el color de fondo del segundo párrafo */
+  background-color: #2c2c2e; /* Adjusts the background color of the second paragraph */
 }
 
 .definition {
