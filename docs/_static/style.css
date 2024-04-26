@@ -36,7 +36,7 @@
 
 .theorem {
   border-left: 0.2rem solid #008000; /* Green border */
-  background-color: rgb(238 254 253)
+  background-color: rgb(238 254 253);
   border-radius: 0.2rem;
   overflow: hidden;
   margin-bottom: 1rem;
@@ -47,7 +47,7 @@
 }
 
 .theorem p:nth-child(2) {
-  background-color: rgb(222, 255, 253);
+  background-color: rgb(213 246 217);
   padding-left: 1rem;
   padding-right: 1rem;
   font-weight: bold;

@@ -18,7 +18,8 @@ release = "0.1"
 extensions = [
     "nbsphinx",
     "sphinx.ext.mathjax",
-    "sphinx_gallery.load_style",  # load CSS for gallery (needs SG >= 0.6)
+    "sphinx_gallery.load_style",
+    "sphinx.ext.autodoc",
 ]
 
 templates_path = ["_templates"]
@@ -36,11 +37,12 @@ exclude_patterns = [
 html_theme = "sphinx_book_theme"
 
 html_theme_options = {
-    "collapse_navigation": True,
+    "collapse_navigation": False,
     "navigation_depth": 4,
     "repository_url": "https://github.com/asanchezyali/math-code",
     "use_repository_button": True,
     "use_sidenotes": True,
+    "show_toc_level": 2,
 }
 
 html_context = {
