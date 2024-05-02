@@ -25,3 +25,9 @@ If you find the tutorials helpful and would like to cite them, you can use the f
    :maxdepth: 4
 
    notebooks/differentiable-programming/differentiation.ipynb
+
+.. toctree::
+   :caption: Linear Algebra
+   :maxdepth: 4
+
+   notebooks/linear-algebra/algebra-linear.ipynb
