@@ -3,17 +3,20 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Math & Code
+Bienvenido a Math & Code
 ===========================================
 
-| *Course edition*: April 9, 2024, Being kept up to date
+| *Course edition*: Abril 9, 2024, Estamos actualizando el contenido
 | *Repository*: https://github.com/asanchezyali/math-code
 | *Author*: Alejandro Sánchez Yalí
 
-If you find the tutorials helpful and would like to cite them, you can use the following bibtex::
+Este es un conjunto de tutoriales sobre matemáticas y programación. Los tutoriales están escritos en Jupyter Notebooks y
+cubren temas como álgebra lineal, cálculo diferencial, optimización y programación diferenciable.
+
+Si encuentra útiles los tutoriales y le gustaría citarlos, puede usar el siguiente bibtex::
 
    @misc{asanchezyali2024,
-      title        = {{Math & Code Tutorials}},
+      title        = {{Math & Code Tutoriales}},
       author       = {Alejandro Sánchez Yalí},
       year         = 2024,
       howpublished = {\url{https://asanchezyali.github.io/math-code/}}
