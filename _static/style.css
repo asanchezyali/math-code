@@ -1,0 +1,186 @@
+@media (min-width: 960px) {
+  .bd-page-width {
+    max-width: 100rem !important;
+  }
+}
+
+.bd-sidebar-primary {
+  overflow: auto !important;
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* Internet Explorer 10+ */
+}
+
+.bd-sidebar-primary::-webkit-scrollbar {
+  /* WebKit */
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.bd-footer-content {
+  max-width: 63rem !important;
+}
+
+.form-control {
+  border: 2px solid #ccc !important; /* color del borde */
+  transition: border-color 0.3s !important; /* transición del color del borde */
+}
+
+.form-control:focus {
+  outline: none !important;
+}
+
+.MathJax {
+  margin-top: 0rem !important;
+  margin-bottom: 0.8rem !important;
+}
+
+.theorem {
+  border-left: 0.2rem solid #008000; /* Green border */
+  background-color: rgb(238 254 253);
+  border-radius: 0.2rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.theorem > p:first-child {
+  display: none;
+}
+
+.theorem p:nth-child(2) {
+  background-color: rgb(213 246 217);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-weight: bold;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.theorem > p {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+html[data-theme="dark"] .theorem {
+  border-left-color: #32cd32; /* Adjusts the left border color */
+  background-color: #1c1c1e; /* Adjusts the background color */
+}
+
+html[data-theme="dark"] .theorem p:nth-child(2) {
+  background-color: #2c2c2e; /* Adjusts the background color of the second paragraph */
+}
+
+.definition {
+  border-left: 0.2rem solid #007bff;
+  background-color: rgb(238, 243, 254);
+  border-radius: 0.2rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.definition > p:first-child {
+  display: none;
+}
+.definition p:nth-child(2) {
+  background-color: rgb(222, 233, 255);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-weight: bold;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.definition > p {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+html[data-theme="dark"] .definition {
+  border-left-color: #4da6ff; /* Ajusta el color del borde izquierdo */
+  background-color: #1c1c1e; /* Ajusta el color de fondo */
+}
+
+html[data-theme="dark"] .definition p:nth-child(2) {
+  background-color: #2c2c2e; /* Ajusta el color de fondo del segundo párrafo */
+}
+
+.example {
+  border-left: 0.2rem solid #858585;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.2rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.example > p:first-child {
+  display: none;
+}
+
+.example p:nth-child(2) {
+  background-color: rgb(245, 245, 245);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-weight: bold;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.example > p {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+html[data-theme="dark"] .example {
+  border-left-color: #858585; /* Ajusta el color del borde izquierdo */
+  background-color: #1c1c1e; /* Ajusta el color de fondo */
+}
+
+html[data-theme="dark"] .example p:nth-child(2) {
+  background-color: #2c2c2e; /* Ajusta el color de fondo del segundo párrafo */
+}
+
+.remark {
+  border-left: 0.2rem solid #ffc107;
+  background-color: rgb(255, 248, 231);
+  border-radius: 0.2rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.remark > p:first-child {
+  display: none;
+}
+
+.remark p:nth-child(2) {
+  background-color: rgb(255, 243, 199);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-weight: bold;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.remark > p {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+html[data-theme="dark"] .remark {
+  border-left-color: #ffc107; /* Ajusta el color del borde izquierdo */
+  background-color: #1c1c1e; /* Ajusta el color de fondo */
+}
+
+html[data-theme="dark"] .remark p:nth-child(2) {
+  background-color: #2c2c2e; /* Ajusta el color de fondo del segundo párrafo */
+}
+
+@media only screen and (max-width: 600px) {
+  .non-display-mobile {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .non-display-desktop {
+    display: none;
+  }
+}

@@ -1,0 +1,742 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Diferenciación &#8212; MATH / CODE</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../../_static/documentation_options.js?v=07c12a61"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../_static/translations.js?v=efdbd0b9"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/differentiable-programming/differentiation';</script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="prev" title="Bienvenido a Math &amp; Code" href="../../index.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">MATH / CODE</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Búsqueda</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programación Diferenciable</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Diferenciación</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/asanchezyali/math-code" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Repositorio de origen"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/differentiable-programming/differentiation.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Diferenciación</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Derivadas-de-funciones-univariables">Derivadas de funciones univariables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Derivadas-y-continuidad">Derivadas y continuidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Reglas-del-cálculo">Reglas del cálculo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Notación-de-Leibniz">Notación de Leibniz</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Funciones-multivariables">Funciones multivariables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Derivadas-direccionales">Derivadas direccionales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Gradientes">Gradientes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Linealidad-de-los-gradientes">Linealidad de los gradientes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Jacobianos">Jacobianos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#Variaciones-de-la-matriz-Jacobiana">Variaciones de la matriz Jacobiana</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Regla-de-la-cadena">Regla de la cadena</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Diferenciación">
+<h1>Diferenciación<a class="headerlink" href="#Diferenciación" title="Link to this heading">#</a></h1>
+<p>En este sesión revisamos los conceptos claves de diferenciación. En particular, enfatizamos en el papel fundamental que desempeñan las aproximaciones lineales en el contexto de la diferenciación numérica. También discutimos el concepto de <strong>diferenciación automática</strong>, que es una herramienta poderosa para calcular derivadas de funciones implementadas en programas de computadora.</p>
+<section id="Derivadas-de-funciones-univariables">
+<h2>Derivadas de funciones univariables<a class="headerlink" href="#Derivadas-de-funciones-univariables" title="Link to this heading">#</a></h2>
+<section id="Derivadas-y-continuidad">
+<h3>Derivadas y continuidad<a class="headerlink" href="#Derivadas-y-continuidad" title="Link to this heading">#</a></h3>
+<p>Antes de estudiar las derivadas, recordamos la definición de continuidad de una función.</p>
+<div class="definition"><p><p>Definición 1.1. Función continua</p>
+</p><p>Una función <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span> es <strong>continua en un punto</strong> <span class="math notranslate nohighlight">\(x_0\)</span> si</p>
+<div class="math notranslate nohighlight">
+\[\lim_{x \to x_0} f(x) = f(x_0).\]</div>
+<p>Una función <span class="math notranslate nohighlight">\(f\)</span> es <strong>continua</strong> si es continua en cada punto de su dominio.</p>
+</div><p>En lo siguiente, usamos la notación de Landau para describir el comportamiento de las funciones cerca de un punto. Escribimos</p>
+<div class="math notranslate nohighlight">
+\[f(x) = o\big(g(x)\big) \quad \text{cuando} \quad x \to x_0\]</div>
+<p>si</p>
+<div class="math notranslate nohighlight">
+\[\lim_{x \to x_0} \frac{|f(x)|}{|g(x)|} = 0.\]</div>
+<p>Es decir, <span class="math notranslate nohighlight">\(f(x)\)</span> es mucho más pequeño que <span class="math notranslate nohighlight">\(g(x)\)</span> a medida que <span class="math notranslate nohighlight">\(x\)</span> se acerca a <span class="math notranslate nohighlight">\(x_0.\)</span> Por ejemplo, <span class="math notranslate nohighlight">\(f\)</span> es continua en <span class="math notranslate nohighlight">\(x_0\)</span> si</p>
+<div class="math notranslate nohighlight">
+\[f(x_0 + \delta) = f(x_0) + o(1) \quad \text{cuando} \quad \delta \to 0.\]</div>
+<p>Ahora introducimos el concepto de derivada. Consideremos una función <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span> y un punto <span class="math notranslate nohighlight">\(x_0\)</span> en su dominio. Su valor en un intervalo <span class="math notranslate nohighlight">\([x_0, x_0 + h]\)</span> puede aproximarse mediante la sencante entre <span class="math notranslate nohighlight">\(\big(x_0, f(x_0)\big)\)</span> y <span class="math notranslate nohighlight">\(\big(x_0 + h, f(x_0 + h)\big)\)</span>. La pendiente de esta <strong>secante</strong> está dada por el cociente diferencial</p>
+<div class="math notranslate nohighlight">
+\[\frac{f(x_0 + h) - f(x_0)}{h}.\]</div>
+<p>En el limite de un infinitesimal <span class="math notranslate nohighlight">\(h\)</span>, la secante converge a la <strong>tangente</strong> en <span class="math notranslate nohighlight">\(\big(x_0, f(x_0)\big)\)</span>. La pendiente de esta tangente es la derivada de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x_0\)</span>, denotada por <span class="math notranslate nohighlight">\(f'(x_0).\)</span> La definición formal de la derivada es la siguiente.</p>
+<div class="definition"><p><p>Definición 1.2. Derivada</p>
+</p><p>La <strong>derivada</strong> de una función <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span> en un punto <span class="math notranslate nohighlight">\(x_0\)</span> está definida como</p>
+<div class="math notranslate nohighlight">
+\[f'(x_0) = \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h}.\]</div>
+<p>Si <span class="math notranslate nohighlight">\(f'(x_0)\)</span> está bien definida en <span class="math notranslate nohighlight">\(x_0\)</span>, en particular, si el límite existe, decimos que la función <span class="math notranslate nohighlight">\(f\)</span> es <strong>diferenciable</strong> en <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+</div><p>Aquí, y en las definiciones siguientes, si <span class="math notranslate nohighlight">\(f\)</span> es diferenciable en cualquier <span class="math notranslate nohighlight">\(x\)</span>, decimos que es <strong>diferenciable en todas partes</strong> o simplemente <strong>diferenciable</strong>. Si <span class="math notranslate nohighlight">\(f\)</span> es diferenciable en un punto dado <span class="math notranslate nohighlight">\(x\)</span>, entonces es necesariamente continua en <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<div class="theorem"><p><p>Teorema 1.1. Diferenciabilidad implica continuidad</p>
+</p><p>Si una función <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span> es diferenciable en un punto <span class="math notranslate nohighlight">\(x_0\)</span>, entonces es continua en <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+</div><p><strong>Demostración.</strong> La prueba sigue de la definición de derivada. Tenemos</p>
+<div class="math notranslate nohighlight">
+\[f(x_0 + h) = f(x_0) + f'(x_0)h + o(h) \quad \text{cuando} \quad h \to 0.\]</div>
+<p>Dado que <span class="math notranslate nohighlight">\(f'(x_0)h + o(h) = o(1)\)</span> cuando <span class="math notranslate nohighlight">\(h \to 0\)</span>, tenemos que</p>
+<div class="math notranslate nohighlight">
+\[\lim_{h \to 0} |f(x_0 + h) - f(x_0)| = 0.\]</div>
+<p>Por lo tanto, <span class="math notranslate nohighlight">\(f\)</span> es continua en <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+<p>Además de permitir el cálculo de la pendiente de una función en un punto, la derivada proporciona información sobre la <strong>monotonía</strong> de <span class="math notranslate nohighlight">\(f\)</span> cerca de ese punto. Por ejemplo, si <span class="math notranslate nohighlight">\(f'(x_0) &gt; 0\)</span>, entonces <span class="math notranslate nohighlight">\(f\)</span> es creciente cerca de <span class="math notranslate nohighlight">\(x_0\)</span>. Si <span class="math notranslate nohighlight">\(f'(x_0) &lt; 0\)</span>, entonces <span class="math notranslate nohighlight">\(f\)</span> es decreciente cerca de <span class="math notranslate nohighlight">\(x_0\)</span>. Si <span class="math notranslate nohighlight">\(f'(x_0) = 0\)</span>, entonces <span class="math notranslate nohighlight">\(f\)</span> tiene un extremo local en <span class="math notranslate nohighlight">\(x_0\)</span>. Esta información puede usarse para desarrollar algoritmos iterativos para
+minimizar o maximizar <span class="math notranslate nohighlight">\(f\)</span> calculando iterados de la forma</p>
+<div class="math notranslate nohighlight">
+\[x_{n+1} = x_n - \alpha f'(x_n),\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\alpha\)</span> es un tamaño de paso. Si <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>, el algoritmo converge a un mínimo local de <span class="math notranslate nohighlight">\(f\)</span>. Si <span class="math notranslate nohighlight">\(\alpha &lt; 0,\)</span> converge a un máximo local. Si <span class="math notranslate nohighlight">\(f\)</span> es convexa, el algoritmo converge al mínimo global.</p>
+<p>Para varias funciones elementales, la derivada se puede calcular analíticamente.</p>
+<div class="example"><p><p>Ejemplo 1.1. Derivada de una función potencia</p>
+</p><p>La derivada de <span class="math notranslate nohighlight">\(f(x) = x^n\)</span> para <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span> y <span class="math notranslate nohighlight">\(n \in \mathbb{N}\setminus \{0\}\)</span> está dada por <span class="math notranslate nohighlight">\(f'(x) = nx^{n-1}\)</span>. De hecho, consideramos <span class="math notranslate nohighlight">\(f(x) = x^n\)</span> para <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span> y <span class="math notranslate nohighlight">\(n \in \mathbb{N}\setminus \{0\}\)</span>. Tenemos</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}f(x + h) = (x + h)^n = \sum_{k=0}^n \binom{n}{k} x^{n-k} h^k\end{equation}\]</div>
+<p>Por lo tanto,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}\begin{split}f(x + h) - f(x) &amp; = \sum_{k=0}^n \binom{n}{k} x^{n-k} h^k - x^n \\ &amp; = \sum_{k=1}^n \binom{n}{k} x^{n-k} h^k.\end{split}\end{equation}\end{split}\]</div>
+<p>Dividiendo por <span class="math notranslate nohighlight">\(h\)</span> y tomando el límite cuando <span class="math notranslate nohighlight">\(h \to 0\)</span>, obtenemos</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}\begin{split}f'(x) &amp; = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} \\ &amp; = \lim_{h \to 0} \sum_{k=1}^n \binom{n}{k} x^{n-k} h^{k-1} \\ &amp; = nx^{n-1}.\end{split}\end{equation}\end{split}\]</div>
+</div><div class="remark"><p><p>Observación 1.1. Funciones en un subconjunto <span class="math notranslate nohighlight">\(U\)</span> de <span class="math notranslate nohighlight">\(\mathbb{R}\)</span></p>
+</p><p>Para simplificar, consideramos funciones <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}.\)</span> Sin embargo, el concepto de derivada se puede extender a funciones definidas en un subconjunto <span class="math notranslate nohighlight">\(U\)</span> de <span class="math notranslate nohighlight">\(\mathbb{R}.\)</span> Si una función <span class="math notranslate nohighlight">\(f: U \rightarrow \mathbb{R}\)</span> está definida en un subconjunto <span class="math notranslate nohighlight">\(U\)</span> de <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, como es el caso de <span class="math notranslate nohighlight">\(f(x) = \sqrt{x}\)</span>, definida en <span class="math notranslate nohighlight">\(U=\mathbb{R}^+,\)</span> la derivada de <span class="math notranslate nohighlight">\(f\)</span> en un punto <span class="math notranslate nohighlight">\(x_0 \in U\)</span> está definida en un vecindario de
+<span class="math notranslate nohighlight">\(x_0\)</span> contenido en <span class="math notranslate nohighlight">\(U,\)</span> es decir, existen <span class="math notranslate nohighlight">\(r &gt; 0\)</span> tal que <span class="math notranslate nohighlight">\(f\)</span> es diferenciable en <span class="math notranslate nohighlight">\(x_0 + \epsilon \in U\)</span> para todo <span class="math notranslate nohighlight">\(|\epsilon| &lt; r.\)</span> La función <span class="math notranslate nohighlight">\(f\)</span> se dice entonces <strong>diferenciable en todas partes</strong> o diferenciable en resumen si es diferenciable en cada punto en el <strong>interior</strong> de <span class="math notranslate nohighlight">\(U\)</span>, el conjunto de puntos en <span class="math notranslate nohighlight">\(U\)</span> tal que <span class="math notranslate nohighlight">\(\{x + \epsilon: |\epsilon| &lt; r\} \subset U\)</span> para algún <span class="math notranslate nohighlight">\(r &gt; 0\)</span>. Para puntos que yacen en el borde de
+<span class="math notranslate nohighlight">\(U\)</span>, el concepto de derivada es más sutil y requiere la definición de <strong>derivadas unilaterales</strong>, lo que significa que el límite en la definición de derivada se toma desde la izquierda o desde la derecha. Por ejemplo, la derivada de <span class="math notranslate nohighlight">\(f(x) = \sqrt{x}\)</span> en <span class="math notranslate nohighlight">\(x=0\)</span> no está definida, ya que la función no está definida para valores negativos de <span class="math notranslate nohighlight">\(x\)</span>. Sin embargo, la derivada de <span class="math notranslate nohighlight">\(f(x) = \sqrt{x}\)</span> en <span class="math notranslate nohighlight">\(x=0\)</span> está definida desde la derecha, y es igual a <span class="math notranslate nohighlight">\(1/2.\)</span></p>
+</div></section>
+<section id="Reglas-del-cálculo">
+<h3>Reglas del cálculo<a class="headerlink" href="#Reglas-del-cálculo" title="Link to this heading">#</a></h3>
+<p>Para un <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span> dado y dos funciones <span class="math notranslate nohighlight">\(f:\mathbb{R}\to\mathbb{R}\)</span> y <span class="math notranslate nohighlight">\(g:\mathbb{R}\to \mathbb{R},\)</span> la derivada de operaciones elementales en <span class="math notranslate nohighlight">\(f\)</span> y <span class="math notranslate nohighlight">\(g\)</span> como sus sumas, productos o composiciones se pueden derivar fácilmente de la definición de derivada, bajo condiciones apropiadas sobre las propiedades de diferenciabilidad de <span class="math notranslate nohighlight">\(f\)</span> y <span class="math notranslate nohighlight">\(g\)</span> en <span class="math notranslate nohighlight">\(x\)</span>. Por ejemplo, si las funciones <span class="math notranslate nohighlight">\(f\)</span> y <span class="math notranslate nohighlight">\(g\)</span> son diferenciables en <span class="math notranslate nohighlight">\(x,\)</span> entonces la
+suma <span class="math notranslate nohighlight">\(af + bg\)</span> y el producto <span class="math notranslate nohighlight">\(fg\)</span> son diferenciables en <span class="math notranslate nohighlight">\(x\)</span> para cualquier <span class="math notranslate nohighlight">\(a, b \in \mathbb{R}\)</span>, y sus derivadas están dadas por</p>
+<ol class="arabic simple">
+<li><p>Linealidad: <span class="math notranslate nohighlight">\((af + bg)'(x) = af'(x) + bg'(x).\)</span></p></li>
+<li><p>Regla del producto: <span class="math notranslate nohighlight">\((fg)'(x) = f'(x)g(x) + f(x)g'(x),\)</span> donde <span class="math notranslate nohighlight">\((fg)(x) + f(x)g(x).\)</span></p></li>
+</ol>
+<p>La linealidad se puede verificar directamente a partir de la linealidad del operador de límite. Para la regla del producto, tenemos</p>
+<div class="non-display-mobile"><div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}\begin{split} \frac{(fg)(x + h) - (fg)(x)}{h} &amp; = \frac{f(x+h)g(x + h) - \color{red}{f(x)g(x + h)}}{h} \\ &amp; + \frac{{\color{red}f(x)g(x + h)} - fg(x)}{h} \\ &amp; = g(x + h) \frac{f(x + h) - f(x)}{h} \\ &amp; + f(x)
+\frac{g(x + h) - g(x)}{h}.\end{split}\end{equation}\end{split}\]</div>
+</div><div class="non-display-desktop"><div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}\begin{split} &amp; \frac{(fg)(x + h) - (fg)(x)}{h} = \\ &amp; = \frac{f(x+h)g(x + h) - \color{red}{f(x)g(x + h)}}{h} \\ &amp; + \frac{{\color{red}f(x)g(x + h)} - f(x)g(x)}{h} \\ &amp; = g(x + h) \frac{f(x + h) - f(x)}{h} \\ &amp; + f(x)
+\frac{g(x + h) - g(x)}{h}.\end{split}\end{equation}\end{split}\]</div>
+</div><p>Si las derivadas de <span class="math notranslate nohighlight">\(g\)</span> en <span class="math notranslate nohighlight">\(x\)</span> y de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(g(x)\)</span> existen, entonces la derivada de la composición <span class="math notranslate nohighlight">\((f\circ g)(x) = f(g(x))\)</span> en <span class="math notranslate nohighlight">\(x\)</span> está dada por la <strong>regla de la cadena</strong>:</p>
+<ol class="arabic simple" start="3">
+<li><p>Regla de la cadena: <span class="math notranslate nohighlight">\((f\circ g)'(x) = f'(g(x))g'(x).\)</span></p></li>
+</ol>
+<p>La regla de la cadena se puede derivar considerando el límite del cociente de la composición <span class="math notranslate nohighlight">\((f\circ g)(x)\)</span> a medida que <span class="math notranslate nohighlight">\(h \to 0\)</span>:</p>
+<div class="non-display-mobile"><div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}\begin{split} \frac{(f\circ g)(x + h) - (f\circ g)(x)}{h} &amp; = \frac{f(g(x + h)) - f(g(x))}{h} \\ &amp; = \frac{f(g(x + h)) - f(g(x))}{g(x + h) - g(x)} \frac{g(x + h) - g(x)}{h}.\end{split}\end{equation}\end{split}\]</div>
+</div><div class="non-display-desktop"><div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}\begin{split} &amp; \frac{(f\circ g)(x + h) - (f\circ g)(x)}{h} = \\ &amp; = \frac{f(g(x + h)) - f(g(x))}{h} \\ &amp; = \frac{f(g(x + h)) - f(g(x))}{g(x + h) - g(x)} \frac{g(x + h) - g(x)}{h}.\end{split}\end{equation}\end{split}\]</div>
+</div><p>Como se puede ver, la linealidad y la regla del producto son consecuencias de la regla de la cadena, lo que hace que la regla de la cadena sea la piedra angular de la diferenciación.</p>
+<p>Por ahora, consideremos una función que se puede expresar como sumas, productos o composiciones de funciones elementales como <span class="math notranslate nohighlight">\(f(x) = \exp(x) \ln(x) + \cos x^2.\)</span> Su derivada se puede calcular aplicando las reglas mencionadas anteriormente a la descomposición de <span class="math notranslate nohighlight">\(f\)</span> en operaciones y funciones elementales.</p>
+<div class="example"><p><p>Ejemplo 1.2. Aplicación de las reglas de diferenciación</p>
+</p><p>Consideremos la función <span class="math notranslate nohighlight">\(f(x) = \exp(x) \ln(x) + \cos x^2.\)</span> Tenemos</p>
+<div class="math notranslate nohighlight">
+\[f'(x) = \exp(x) \ln(x) + \exp(x) \frac{1}{x} - 2x \sin x^2.\]</div>
+<p>La derivada de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x &gt; 0\)</span> se puede calcular paso a paso de la siguiente manera, denotando <span class="math notranslate nohighlight">\(\operatorname*{sq}(x) := x^2,\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}\begin{split}f'(x) &amp;  = (\exp \cdot \ln)'(x) + (\cos \circ \operatorname*{sq})'(x) \\ &amp; = \exp'(x) \ln(x) + \exp(x) \ln'(x) + \cos'(\operatorname*{sq}(x)) \operatorname*{sq}'(x) \\ &amp; = \exp(x) \ln(x) + \exp(x) \frac{1}{x} - 2x \sin x^2.\end{split}\end{equation}\end{split}\]</div>
+</div></section>
+<section id="Notación-de-Leibniz">
+<h3>Notación de Leibniz<a class="headerlink" href="#Notación-de-Leibniz" title="Link to this heading">#</a></h3>
+<p>La noción de derivada fue introducida por Isaac Newton y Gottfried Wilhelm Leibniz de forma independiente en el siglo XVIII. Este último consideró las derivadas como el cociente de variaciones infinitesimales. Es decir, denotando <span class="math notranslate nohighlight">\(y = f(x)\)</span> una variable que depende de <span class="math notranslate nohighlight">\(x\)</span> a través de <span class="math notranslate nohighlight">\(f\)</span>, Leibniz consideró la derivada de <span class="math notranslate nohighlight">\(f\)</span> como el cociente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f' = \frac{dy}{dx} \quad \text{con} \quad f'(x) = \left. \frac{df}{dx}\\\right|_{x}.\end{split}\]</div>
+<p>Aquí, <span class="math notranslate nohighlight">\(dy\)</span> y <span class="math notranslate nohighlight">\(dx\)</span> son variaciones infinitesimales de <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(x\)</span>, respectivamente, y el símbolo <span class="math notranslate nohighlight">\(\left. \frac{df}{dx}\\\right|_{x}\)</span> denota la derivada de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span>. La notación <span class="math notranslate nohighlight">\(\frac{dy}{dx}\)</span> se llama <strong>notación de Leibniz</strong>. Es particularmente útil para expresar la regla de la cadena, ya que permite expresar la derivada de una composición de funciones como el producto de las derivadas de las funciones involucradas en la composición. Si tenemos
+para <span class="math notranslate nohighlight">\(z = g(y)\)</span> y <span class="math notranslate nohighlight">\(y = f(x)\)</span>, entonces la regla de la cadena se puede expresar como:</p>
+<div class="math notranslate nohighlight">
+\[\frac{dz}{dx} = \frac{dz}{dy} \frac{dy}{dx}.\]</div>
+<p>Esto sugiere que las derivadas se multiplican al considerar composiciones de funciones. En la evaluación, la regla de la cadena en la notación de Leibniz recupera la fórmula presentada anteriormente como</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left. \frac{dz}{dx}\\\right|_{x} = \left. \frac{dz}{dy}\\\right|_{y} \left. \frac{dy}{dx}\\\right|_{x} =
+g'(f(x))f'(x) = (g\circ f)'(x).\end{split}\]</div>
+</section>
+</section>
+<section id="Funciones-multivariables">
+<h2>Funciones multivariables<a class="headerlink" href="#Funciones-multivariables" title="Link to this heading">#</a></h2>
+<section id="Derivadas-direccionales">
+<h3>Derivadas direccionales<a class="headerlink" href="#Derivadas-direccionales" title="Link to this heading">#</a></h3>
+<p>Consideremos ahora una función <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> de múltiples entradas <span class="math notranslate nohighlight">\(x = (x_1, \ldots, x_n) \in \mathbb{R}^n\)</span>. El ejemplo más importante en el aprendizaje automático es una función que, a los parámetros <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span> de una red neuronal, asocia el valor de pérdida en <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>. Las variaciones de <span class="math notranslate nohighlight">\(f\)</span> deben definirse a lo largo de direcciones específicas en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, como la variación <span class="math notranslate nohighlight">\(f(x + \delta v) - f(x)\)</span> de
+<span class="math notranslate nohighlight">\(f\)</span> alrededor de <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span> en la dirección <span class="math notranslate nohighlight">\(v\in\mathbb{R}^n\)</span>. Esta consideración conduce naturalmente a la definición de la derivada direccional de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span> en la dirección <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<div class="definition"><p><p>Definición 1.3. Derivada direccional</p>
+</p><p>La <strong>derivada direccional</strong> de una función <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> en un punto <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span> en la dirección <span class="math notranslate nohighlight">\(v \in \mathbb{R}^n\)</span> se define como</p>
+<div class="math notranslate nohighlight">
+\[\partial f(x)[v] = \lim_{h \to 0} \frac{f(x + hv) - f(x)}{h}.\]</div>
+<p>Si el límite existe, decimos que <span class="math notranslate nohighlight">\(f\)</span> es diferenciable en <span class="math notranslate nohighlight">\(x\)</span> en la dirección <span class="math notranslate nohighlight">\(v\)</span>.</p>
+</div><p>Un ejemplo de derivada direccional consiste en calcular la derivada de una función <span class="math notranslate nohighlight">\(f\)</span> en un punto <span class="math notranslate nohighlight">\(x\)</span> en cualquiera de las direcciones canónicas <span class="math notranslate nohighlight">\(e_i\)</span> de <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, donde <span class="math notranslate nohighlight">\(e_i\)</span> es el vector con un <span class="math notranslate nohighlight">\(1\)</span> en la posición <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(0\)</span> en las demás.</p>
+<p>Esto nos permite definir la noción de <strong>derivadas parciales</strong>, denotadas para <span class="math notranslate nohighlight">\(i = 1, \ldots, n\)</span> por</p>
+<div class="math notranslate nohighlight">
+\[\partial_i f(x)
+:= \partial f(x)[e_i] = \lim_{h \to 0} \frac{f(x + he_i) - f(x)}{h}.\]</div>
+<p>Esto también se denota en la notación de Leibniz por <span class="math notranslate nohighlight">\(\partial_i f(x) = \frac{\partial f}{\partial x_i}(x)\)</span> o <span class="math notranslate nohighlight">\(\partial_i f(x) = \partial_{x_i} f(x).\)</span> Al moverse solo a lo largo de la <span class="math notranslate nohighlight">\(i\)</span>-ésima coordenada de la función, la derivada parcial es similar a usar la función <span class="math notranslate nohighlight">\(\phi(x_i)=f(x_1, \cdots, x_n)\)</span> alrededor de <span class="math notranslate nohighlight">\(x_i\)</span>, dejando todas las otras coordenadas fijas en sus valores <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
+</section>
+<section id="Gradientes">
+<h3>Gradientes<a class="headerlink" href="#Gradientes" title="Link to this heading">#</a></h3>
+<p>Introducimos ahora el vector gradiente, que reúne las derivadas parciales. Primero recordamos las definiciones de mapa y forma lineal.</p>
+<div class="definition"><p><p>Definición 1.4. Mapa lineal, forma lineal</p>
+</p><p>Un <strong>mapa lineal</strong> <span class="math notranslate nohighlight">\(A: \mathbb{R}^n \rightarrow \mathbb{R}^m\)</span> es una función que satisface las siguientes propiedades para todo <span class="math notranslate nohighlight">\(x, y \in \mathbb{R}^n\)</span> y <span class="math notranslate nohighlight">\(\alpha, \beta \in \mathbb{R}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[A(\alpha x + \beta y) = \alpha A(x) + \beta A(y).\]</div>
+<p>Una <strong>forma lineal</strong> es un mapa lineal <span class="math notranslate nohighlight">\(A: \mathbb{R}^n \rightarrow \mathbb{R}\)</span>.</p>
+</div><p>La linealidad juega un papel crucial en la diferenciabilidad de una función.</p>
+<div class="definition"><p><p>Definición 1.5. Diferenciabilidad, caso de una sola salida</p>
+</p><p>Una función <span class="math notranslate nohighlight">\(f:\mathbb{R}^{n}\to \mathbb{R}\)</span> es diferenciable en <span class="math notranslate nohighlight">\(x\in \mathbb{R}\)</span> si su derivada direccional está definida en cualquier dirección <span class="math notranslate nohighlight">\(v\in\mathbb{R}^n\)</span>, es lineal en cualquier dirección, y si</p>
+<div class="math notranslate nohighlight">
+\[\lim_{||v||_{2}\to 0}\frac{|f(x + v) - f(x) - \partial f(x)[v]|}{||v||_{2}} = 0\]</div>
+</div><p>Ahora podemos introducir el gradiente.</p>
+<div class="definition"><p><p>Definición 1.6. Gradiente</p>
+</p><p>El <strong>gradiente</strong> de una función diferenciable <span class="math notranslate nohighlight">\(f:\mathbb{R}^n\to \mathbb{R}\)</span> en un punto <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span> se define como el vector de derivadas parciales</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\nabla f(x) = \begin{pmatrix} \partial_1 f(x) \\ \vdots \\ \partial_n f(x) \end{pmatrix} = \begin{pmatrix} \partial f(x)[e_1] \\ \vdots \\ \partial f(x)[e_n] \end{pmatrix}.\end{split}\]</div>
+<p>Por linealidad, la derivada direccional de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span> en la dirección <span class="math notranslate nohighlight">\(v=\sum_{i=1}^n v_i e_i\)</span> está dada por</p>
+<div class="math notranslate nohighlight">
+\[\partial f(x)[v] = \sum_{i=1}^n v_i\partial_i f(x)[e_i] = \langle v, \nabla f(x) \rangle.\]</div>
+</div><p>En la definición anterior, el hecho de que el gradiente se pueda usar para calcular la derivada direccional es una mera consecuencia de la linealidad. Sin embargo, en casos más abstractos presentados en secciones posteriores, el gradiente se define a través de esta propiedad.</p>
+<p>Como ejemplo simple, cualquier función lineal de la forma <span class="math notranslate nohighlight">\(f(x)=a^\top x = \sum_{i=1}^{n}a_i x_i\)</span> es diferenciable ya que tenemos <span class="math notranslate nohighlight">\((a^\top(x+v) - a^\top x - a^\top v)/||v||_2 = 0\)</span> para cualquier <span class="math notranslate nohighlight">\(v\)</span> y en particular para <span class="math notranslate nohighlight">\(||v||\to 0.\)</span> Además, su gradiente se define naturalmente como <span class="math notranslate nohighlight">\(\nabla f(x) = a.\)</span></p>
+<p>Generalmente, para mostrar que una función es diferenciable y encontrar su gradiente, un enfoque es aproximar <span class="math notranslate nohighlight">\(f(x+v)\)</span> alrededor de <span class="math notranslate nohighlight">\(v=0\)</span>. Si podemos encontrar un vector <span class="math notranslate nohighlight">\(g\)</span> tal que</p>
+<div class="math notranslate nohighlight">
+\[f(x+v) = f(x) + \langle g, v\rangle + o(||v||_2),\]</div>
+<p>entonces <span class="math notranslate nohighlight">\(f\)</span> es diferenciable en <span class="math notranslate nohighlight">\(x\)</span> ya que <span class="math notranslate nohighlight">\(\langle g, \cdot \rangle\)</span> es lineal. Además, <span class="math notranslate nohighlight">\(g\)</span> es entonces el gradiente de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<div class="remark"><p><p>Observación 1.2. Diferenciabilidad de Gateux y Fréchet</p>
+</p><p>Existen múltiples definiciones de diferenciabilidad. La presentada en la Definición 1.5 es sobre funciones <strong>Fréchet diferenciables</strong>. Alternativamente, si <span class="math notranslate nohighlight">\(f:\mathbb{R}^p \to \mathbb{R}\)</span> tiene derivadas direccionales bien definidas a lo largo de cualquier dirección, entonces la función es <strong>Gateaux diferenciable</strong>. Tenga en cuenta que la existencia de derivadas direccionales en cualquier dirección no es una condición suficiente para que la función sea diferenciable. En otras palabras,
+cualquier función Fréchet diferenciable es Gateaux diferenciable, pero el recíproco no es cierto. Como contraejemplo, uno puede verificar que la función</p>
+<div class="math notranslate nohighlight">
+\[f(x_1, x_2)=\frac{x_1^3}{x_1^2 + x_2^2}\]</div>
+<p>es Gateaux diferenciable en <span class="math notranslate nohighlight">\(0\)</span> pero no Fréchet diferenciable en <span class="math notranslate nohighlight">\(0\)</span> (porque la derivada direccional en 0 no es lineal).</p>
+<p>Algunos autores también requieren que las funciones Gateux diferenciables tengan derivadas direccionales lineales a lo largo de cualquier dirección. Estas aún no son funciones Fréchet diferenciables. De hecho, el límite en la Definición 1.5 es sobre cualquier vector que tienda a 0 (potencialmente de una manera patológica), mientras que las derivadas direccionales consideran tales límites de manera única en términos de una sola dirección.</p>
+<p>En el resto de este capítulo, todas las definiciones de diferenciabilidad son en términos de diferenciabilidad de Fréchet.</p>
+</div><p>El Ejemplo 1.3 ilustra cómo calcular el gradiente de la pérdida logística y validar su diferenciabilidad.</p>
+<div class="example"><p><p>Ejemplo 1.3. Gradiente de la pérdida logística</p>
+</p><p>Consideremos la pérdida logística</p>
+<div class="math notranslate nohighlight">
+\[l(\theta, y) := -y^\top \theta + \log\left(\sum_{k=1}^m \exp(\theta_k)\right),\]</div>
+<p>que mide el error de predicción de los logits <span class="math notranslate nohighlight">\(\theta\in\mathbb{R}^m\)</span> para un objetivo <span class="math notranslate nohighlight">\(y\in\{e_1, \ldots, e_m\}.\)</span> Calculemos el gradiente de esta pérdida. Queremos calcular el gradiente de <span class="math notranslate nohighlight">\(f(\theta):=l(\theta, y).\)</span> Descompongamos <span class="math notranslate nohighlight">\(f\)</span> como <span class="math notranslate nohighlight">\(f = f + \operatorname*{logsumexp}\)</span> con <span class="math notranslate nohighlight">\(l(\theta):=\langle -y, \theta\rangle\)</span> y</p>
+<div class="math notranslate nohighlight">
+\[\operatorname*{logsumexp}(\theta) := \log\left(\sum_{k=1}^m \exp(\theta_k)\right),\]</div>
+<p>la función log-sum-exp. La función <span class="math notranslate nohighlight">\(l\)</span> es lineal, por lo que es diferenciable con gradiente <span class="math notranslate nohighlight">\(\nabla l(\theta) = -y.\)</span> Nos enfocamos entonces en <span class="math notranslate nohighlight">\(\operatorname*{logsumexp}.\)</span> Denotando <span class="math notranslate nohighlight">\(\exp(\theta) = (\exp(\theta_1), \ldots, \exp(\theta_m)),\)</span> tenemos</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}\nabla \operatorname*{logsumexp}(\theta) = \frac{\exp(\theta)}{\sum_{k=1}^m \exp(\theta_k)} = \operatorname*{softmax}(\theta),\end{equation}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\operatorname*{softmax}(\theta)\)</span> es la función softmax. El gradiente de la pérdida logística está dado por</p>
+<div class="math notranslate nohighlight">
+\[\nabla l(\theta) = -y + \operatorname*{softmax}(\theta).\]</div>
+</div></section>
+<section id="Linealidad-de-los-gradientes">
+<h3>Linealidad de los gradientes<a class="headerlink" href="#Linealidad-de-los-gradientes" title="Link to this heading">#</a></h3>
+<p>La noción de diferenciabilidad para funciones de múltiples entradas hereda naturalmente de la linealidad de las derivadas para funciones de una sola entrada. Para cualquier <span class="math notranslate nohighlight">\(u_1, \dots, u_n\in\mathbb{R}\)</span> y cualquier función de varias entradas <span class="math notranslate nohighlight">\(f_1, \dots f_n\)</span> que son diferenciables en <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span>, la función <span class="math notranslate nohighlight">\(f(x) = \sum_{i=1}^n u_i f_i(x)\)</span> es diferenciable en <span class="math notranslate nohighlight">\(x\)</span> con gradiente <span class="math notranslate nohighlight">\(\nabla f(x) = \sum_{i=1}^n u_i \nabla f_i(x).\)</span> Esta propiedad es una
+consecuencia directa de la linealidad del gradiente.</p>
+<div class="theorem"><p><p>Teorema 1.2. Linealidad de los gradientes</p>
+</p><p>Sea <span class="math notranslate nohighlight">\(f_1, \ldots, f_n:\mathbb{R}^n\to\mathbb{R}\)</span> funciones diferenciables en <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span> y <span class="math notranslate nohighlight">\(u_1, \ldots, u_n\in\mathbb{R}\)</span>. Entonces la función <span class="math notranslate nohighlight">\(f(x) = \sum_{i=1}^n u_i f_i(x)\)</span> es diferenciable en <span class="math notranslate nohighlight">\(x\)</span> con gradiente <span class="math notranslate nohighlight">\(\nabla f(x) = \sum_{i=1}^n u_i \nabla f_i(x).\)</span></p>
+</div><p>El gradiente define la dirección de ascenso más empinada de una función. Para ver por qué, observe que</p>
+<div class="math notranslate nohighlight">
+\[\operatorname*{argmax}_{v\in\mathbb{R}^n, ||v||_2\leq 1} \partial f(x)[v] = \operatorname*{argmax}_{v\in\mathbb{R}^n,
+||v||_2\leq 1} \langle v, \nabla f(x)\rangle = \frac{\nabla f(x)}{||\nabla f(x)||_2},\]</div>
+<p>donde asumimos que <span class="math notranslate nohighlight">\(\nabla f(x)\neq 0\)</span> para evitar la división por cero. El gradiente <span class="math notranslate nohighlight">\(\nabla f(x)\)</span> es ortogonal al conjunto de nivel de la función <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span>, lo que significa que el gradiente apunta en la dirección del ascenso más empinado de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span>. Por el contrario, el gradiente negativo <span class="math notranslate nohighlight">\(-\nabla f(x)\)</span> apunta en la dirección del descenso más empinado de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span>. Esta observación motiva el desarrollo de algoritmos de optimización
+como el descenso de gradiente, que actualiza iterativamente los parámetros <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(x_{n+1} = x_n - \alpha \nabla f(x_n),\)</span> donde <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span> es un tamaño de paso. Por lo tanto, busca el mínimo de <span class="math notranslate nohighlight">\(f\)</span> siguiendo la dirección de descenso más empinada.</p>
+</section>
+<section id="Jacobianos">
+<h3>Jacobianos<a class="headerlink" href="#Jacobianos" title="Link to this heading">#</a></h3>
+<p>Consideremos ahora una función <span class="math notranslate nohighlight">\(f:\mathbb{R}^n\to\mathbb{R}^m\)</span> que asigna un vector <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span> a un vector <span class="math notranslate nohighlight">\(f(x)\in\mathbb{R}^m\)</span>. Es decir, <span class="math notranslate nohighlight">\(f(x) = (f_1(x), \ldots, f_m(x))\)</span> con <span class="math notranslate nohighlight">\(f_i:\mathbb{R}^n\to\mathbb{R}\)</span> para <span class="math notranslate nohighlight">\(i=1, \ldots, m,\)</span> donde <span class="math notranslate nohighlight">\(f_i\)</span> es la <span class="math notranslate nohighlight">\(i\)</span>-ésima componente de <span class="math notranslate nohighlight">\(f\)</span>. Un ejemplo típico en el aprendizaje automático es una red neuronal. La noción de derivada direccional puede ser extendida como una función vectorial compuesta
+por las derivadas direccionales de las componentes de <span class="math notranslate nohighlight">\(f\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\partial f(x)[v] := \lim_{\delta \to 0} \frac{f(x + \delta v) - f(x)}{\delta} = \lim_{\delta \to 0} \begin{pmatrix}
+\frac{f_1(x + \delta v) - f_1(x)}{\delta} \\ \vdots \\ \frac{f_1(x + \delta v) - f_1(x)}{\delta} \end{pmatrix} \in
+\mathbb{R}^m,\end{split}\]</div>
+<p>en donde los límites (asumiendo que existen) son aplicados a cada una de las coordenadas. La derivada direccional de <span class="math notranslate nohighlight">\(f\)</span> en la direccion <span class="math notranslate nohighlight">\(v\in \mathbb{R}^p\)</span> es por lo tanto el vector que agrupa las derivadas de cada <span class="math notranslate nohighlight">\(f_j\)</span>, es decir, <span class="math notranslate nohighlight">\(\partial f(x)[v] = (\partial f_j (x)[v])_{j=1}^{m}\)</span>. En particular, podemos definir las <strong>derivadas parciales</strong> de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span> como el vector:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\partial_i f(x) = \partial f(x)[e_i] = \begin{pmatrix} \partial_i f_1(x) \\ \vdots \\ \partial_i f_m(x) \end{pmatrix}
+\in \mathbb{R}^m.\end{split}\]</div>
+<p>En cuanto a la definición habitual de la derivada, la derivada direccional de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span> puede proporcionar una aproximación lineal de una función en torno a una entrada de corriente en <span class="math notranslate nohighlight">\(x\)</span> para una curva parametrizada <span class="math notranslate nohighlight">\(f:\mathbb{R}\to\mathbb{R}^m\)</span>.</p>
+<p>Al igual que en caso de una sola salida, la diferenciabilidad se define no solo como la existencia de las derivadas direccionales, sino también por la linealidad en la dirección escogida.</p>
+<div class="definition"><p><p>Definición 1.7. Diferenciabilidad, caso de múltiples salidas</p>
+</p><p>Una función <span class="math notranslate nohighlight">\(f:\mathbb{R}^n\to\mathbb{R}^m\)</span> es diferenciable en <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span> si su derivada direccional está definida en cualquier dirección <span class="math notranslate nohighlight">\(v\in\mathbb{R}^n\)</span>, es lineal en cualquier dirección, y si</p>
+<div class="math notranslate nohighlight">
+\[\lim_{||v||_{2}\to 0}\frac{||f(x + v) - f(x) - \partial f(x)[v]||_2}{||v||_2} = 0.\]</div>
+</div><p>La derivadas parciales de todas las componentes de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span> se pueden agrupar en una matriz, llamada <strong>matriz Jacobiana</strong>.</p>
+<div class="definition"><p><p>Definición 1.8. Matriz Jacobiana</p>
+</p><p>La <strong>matriz Jacobiana</strong> de una función <span class="math notranslate nohighlight">\(f:\mathbb{R}^n\to\mathbb{R}^m\)</span> en un punto <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span> es la matriz de derivadas parciales de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span>, denotada por <span class="math notranslate nohighlight">\(\pmb{\partial}_f(x)\)</span> o <span class="math notranslate nohighlight">\(\pmb{\nabla} f(x)\)</span>, y definida como</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\pmb{\partial}_f(x) = \begin{pmatrix} \partial_1 f_1(x) &amp; \cdots &amp; \partial_n f_1(x) \\ \vdots &amp; \ddots &amp; \vdots \\ \partial_1
+  f_m(x) &amp; \cdots &amp; \partial_n f_m(x) \end{pmatrix} \in M_{m\times n}(\mathbb{R}).\end{split}\]</div>
+<p>El Jacobiano se puede representar apilando columnas de derivadas parciales o filas de gradientes de las componentes de <span class="math notranslate nohighlight">\(f,\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\pmb{\partial}_f(x) = \big(\partial_1 f(x), \dots, \partial_n f(x)\big) = \begin{pmatrix} \nabla f_1(x)^\top \\ \vdots \\ \nabla f_m(x)^\top \end{pmatrix}.\end{split}\]</div>
+<p>En virtud de la linealidad de los gradientes, la derivada direccional de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span> en la dirección <span class="math notranslate nohighlight">\(v = \sum_{i=1}^n v_i e_i\)</span> está dada por</p>
+<div class="math notranslate nohighlight">
+\[\partial f(x)[v] = \sum_{i=1}^n v_i \partial_i f(x) = \pmb{\partial}_f(x)v.\]</div>
+</div><p>Notemos que hemos usado la notación <span class="math notranslate nohighlight">\(\pmb{\partial}\)</span> en negrita para denotar la matriz Jacobiana, en contraste con la notación <span class="math notranslate nohighlight">\(\partial\)</span> para las derivadas parciales. La matriz Jacobiana generaliza los conceptos de derivadas y gradientes presentados anteriormente. En particular, para el caso de una sola variable, para mostrar que una función es diferenciable, un enfoque es aproximar <span class="math notranslate nohighlight">\(f(x+v)\)</span> alrededor de punto <span class="math notranslate nohighlight">\(v=0\)</span>. Si podemos encontrar una transformación lineal
+<span class="math notranslate nohighlight">\(l\)</span> tal que</p>
+<div class="math notranslate nohighlight">
+\[f(x+v) = f(x) + l(v) + o(||v||_2),\]</div>
+<p>entonces <span class="math notranslate nohighlight">\(f\)</span> es diferenciable en <span class="math notranslate nohighlight">\(x\)</span> y <span class="math notranslate nohighlight">\(l\)</span> es el Jacobiano de <span class="math notranslate nohighlight">\(f\)</span>, es decir, <span class="math notranslate nohighlight">\(l[v] = \pmb{J}v\)</span> en donde <span class="math notranslate nohighlight">\(\pmb{J} = \pmb{\partial} f(x).\)</span></p>
+<p>Un ejemplos simple, es la función <span class="math notranslate nohighlight">\(f(x) = Ax\)</span> con <span class="math notranslate nohighlight">\(A\in M_{m\times n}(\mathbb{R})\)</span> y <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span>. <span class="math notranslate nohighlight">\(f\)</span> es diferenciable, dado que todas las componentes de <span class="math notranslate nohighlight">\(f\)</span> son lineales. El Jacobiano de <span class="math notranslate nohighlight">\(f\)</span> es <span class="math notranslate nohighlight">\(\pmb{\partial} f(x) = A.\)</span></p>
+<div class="remark"><p><p>Observación 1.3. Casos especiales de los Jacobianos</p>
+</p><p>Para funciiones <span class="math notranslate nohighlight">\(f:\mathbb{R}^n\to\mathbb{R}\)</span>, el Jacobiano es un vector fila identificado con el transpuesto del gradiente, es decir,</p>
+<div class="math notranslate nohighlight">
+\[\pmb{\partial} f(x) = \nabla f(x)^\top.\]</div>
+<p>Para funciones <span class="math notranslate nohighlight">\(f:\mathbb{R}\to\mathbb{R}^m\)</span>, el Jacobiano es un vector columna de las derivadas direccionales, denotado por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\pmb{\partial} f(x) = f'(x) = \begin{pmatrix} \partial f_1(x) \\ \vdots \\ \partial f_m(x) \end{pmatrix} \in M_{m\times 1}(\mathbb{R}).\end{split}\]</div>
+<p>Para una función <span class="math notranslate nohighlight">\(f:\mathbb{R}\to\mathbb{R}\)</span>, el Jacobiano se reduce a la derivada de la función, es decir, <span class="math notranslate nohighlight">\(\pmb{\partial} f(x) = f'(x)\in \mathbb{R}.\)</span></p>
+</div><p>En el siguiente ejemplo, se ilustra la forma de la matriz Jacobiana para la aplicación elemento por elemento de una función diferenciable, como la función softplus. Este ejemplo muestra que el Jacobiano toma la forma de una matriz diagonal. Como consencuencia, la derivada direccional asociada con esta función se da simplemente por un producto elemento por elemento en lugar de un producto matricial-vector, como se sugiere en la definición 1.8.</p>
+<div class="example"><p><p>Ejemplo 1.4. Jacobiano de la función softplus</p>
+</p><p>Consideremos la función softplus <span class="math notranslate nohighlight">\(f:\mathbb{R}^n\to\mathbb{R}^n\)</span> definida por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(x) = \begin{pmatrix} \sigma(x_1) \\ \vdots \\ \sigma(x_n) \end{pmatrix},\end{split}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\sigma(x) = \log(1 + \exp(x))\)</span> es la función softplus. La función softplus es diferenciable con derivada <span class="math notranslate nohighlight">\(\sigma'(x) = \frac{\exp(x)}{1 + \exp(x)} = \frac{1}{1 + \exp(-x)} = \sigma(x)(1 - \sigma(x)).\)</span> El Jacobiano de <span class="math notranslate nohighlight">\(f\)</span> es entonces</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\pmb{\partial} f(x) = \begin{pmatrix} \sigma'(x_1) &amp; &amp; 0 \\ &amp; \ddots &amp; \\ 0 &amp; &amp; \sigma'(x_n) \end{pmatrix} = \operatorname*{diag}(\sigma'(x_1), \ldots, \sigma'(x_n)).\end{split}\]</div>
+</div><section id="Variaciones-de-la-matriz-Jacobiana">
+<h4>Variaciones de la matriz Jacobiana<a class="headerlink" href="#Variaciones-de-la-matriz-Jacobiana" title="Link to this heading">#</a></h4>
+<p>En lugar de considerar las variaciones de <span class="math notranslate nohighlight">\(f\)</span> a lo largo de una dirección de entrada <span class="math notranslate nohighlight">\(v\in\mathbb{R}^n,\)</span> podemos considerar las variaciones de <span class="math notranslate nohighlight">\(f\)</span> a lo largo de una dirección de salida <span class="math notranslate nohighlight">\(w\in\mathbb{R}^m,\)</span> es decir, calcular los gradientes <span class="math notranslate nohighlight">\(\nabla (u^\top f)(x)\)</span> para <span class="math notranslate nohighlight">\(u\in\mathbb{R}^m.\)</span> En donde <span class="math notranslate nohighlight">\((u^\top f)(x)\)</span> se define como el producto escalar de <span class="math notranslate nohighlight">\(u\)</span> y <span class="math notranslate nohighlight">\(f(x),\)</span> es decir,</p>
+<div class="math notranslate nohighlight">
+\[(u^\top f)(x) = \sum_{i=1}^m u_i f_i(x).\]</div>
+<p>En particular, podemos considerar calcular los gradientes <span class="math notranslate nohighlight">\(\nabla f_i(x)\)</span> para <span class="math notranslate nohighlight">\(i=1, \ldots, m.\)</span> de cada función coordenada <span class="math notranslate nohighlight">\(f_i = e_i^\top f,\)</span> en <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n.\)</span>, donde <span class="math notranslate nohighlight">\(e_i\)</span> es el vector canónico con un <span class="math notranslate nohighlight">\(1\)</span> en la posición <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(0\)</span> en las demás. Las variaciones infinitesimales de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span> en la dirección <span class="math notranslate nohighlight">\(u = \sum_{i=1}^m u_i e_i\)</span> se pueden expresar en términos de los gradientes de las funciones por</p>
+<div class="math notranslate nohighlight">
+\[\nabla (u^\top f)(x) = \sum_{i=1}^m u_i \nabla f_i(x) = \pmb{\partial} f(x)^\top u\in\mathbb{R}^n.\]</div>
+<p>Donde <span class="math notranslate nohighlight">\(\pmb{\partial}f(x)^\top\)</span> es el transpuesto de la matriz Jacobiana de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x.\)</span> Usando la definición de la derivada como un límite, obtenemos para <span class="math notranslate nohighlight">\(i=1, \ldots, m,\)</span></p>
+<div class="math notranslate nohighlight">
+\[\nabla_i(u^\top f)(x) = \big[\pmb{\partial}f(x)^\top u\big]_i = \lim_{\delta\to 0} \frac{u^\top (f(x + \delta e_i) -
+f(x))}{\delta}.\]</div>
+</section>
+</section>
+<section id="Regla-de-la-cadena">
+<h3>Regla de la cadena<a class="headerlink" href="#Regla-de-la-cadena" title="Link to this heading">#</a></h3>
+<p>La regla de la cadena para funciones de múltiples variables es una generalización de la regla de la cadena para funciones del tipo <span class="math notranslate nohighlight">\(f:\mathbb{R}\to\mathbb{R}.\)</span></p>
+<div class="theorem"><p><p>Teorema 1.3. Regla de la cadena</p>
+</p><p>Sea <span class="math notranslate nohighlight">\(f:\mathbb{R}^n\to\mathbb{R}^m\)</span> y <span class="math notranslate nohighlight">\(g:\mathbb{R}^m\to\mathbb{R}^p\)</span> funciones diferenciables en <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span> y <span class="math notranslate nohighlight">\(f(x)\in\mathbb{R}^m.\)</span> Entonces la composición <span class="math notranslate nohighlight">\(h = g\circ f\)</span> es diferenciable en <span class="math notranslate nohighlight">\(x\)</span> y su Jacobiano está dado por</p>
+<div class="math notranslate nohighlight">
+\[\pmb{\partial} h(x) = \pmb{\partial} g(f(x))\pmb{\partial} f(x).\]</div>
+</div><p><strong>Demostración.</strong> La regla de la cadena se puede demostrar considerando la derivada direccional de <span class="math notranslate nohighlight">\(h\)</span> en <span class="math notranslate nohighlight">\(x\)</span> en la dirección <span class="math notranslate nohighlight">\(v\in\mathbb{R}^n.\)</span> La derivada direccional de <span class="math notranslate nohighlight">\(h\)</span> en <span class="math notranslate nohighlight">\(x\)</span> en la dirección <span class="math notranslate nohighlight">\(v\)</span> se puede expresar como</p>
+<div class="math notranslate nohighlight">
+\[h(x + v) - h(x) = g(f(x) + \pmb{\partial} f(x)v + o(||v||_2)) = g(f(x)) + \pmb{\partial} g(f(x))\pmb{\partial} f(x)v +
+o(||v||_2),\]</div>
+<p>donde hemos usado la diferenciabilidad de <span class="math notranslate nohighlight">\(f\)</span> y <span class="math notranslate nohighlight">\(g\)</span> en <span class="math notranslate nohighlight">\(x\)</span> y la definición de la derivada direccional. Por lo tanto, <span class="math notranslate nohighlight">\(h\)</span> es diferenciable en <span class="math notranslate nohighlight">\(x\)</span> y su Jacobiano está dado por <span class="math notranslate nohighlight">\(\pmb{\partial} h(x) = \pmb{\partial} g(f(x))\pmb{\partial} f(x).\)</span></p>
+<p>El teorema 1.3 puede ser visto como la piedra angular de cualquier cálculo de derivadas. Por ejemplo, puede usarse para demostrar la linealidad o la regla del producto asociadas a las derivadas de las funciones del tipo <span class="math notranslate nohighlight">\(f:\mathbb{R}\to\mathbb{R}.\)</span></p>
+<p>Cuando <span class="math notranslate nohighlight">\(g:\mathbb{R}^m\to\mathbb{R}\)</span> y <span class="math notranslate nohighlight">\(f:\mathbb{R}^n\to\mathbb{R}^m,\)</span> con el uso de observación 1.3, obtenemos una expresión más simple para <span class="math notranslate nohighlight">\(\nabla (g\circ f)(x)\)</span> en términos de los gradientes de <span class="math notranslate nohighlight">\(f\)</span> y <span class="math notranslate nohighlight">\(g\)</span> en <span class="math notranslate nohighlight">\(x.\)</span></p>
+<div class="theorem"><p><p>Teorema 1.4. Regla de cadena para el caso vector-escalar</p>
+</p><p>Sea <span class="math notranslate nohighlight">\(f:\mathbb{R}^n\to\mathbb{R}^m\)</span> y <span class="math notranslate nohighlight">\(g:\mathbb{R}^m\to\mathbb{R}\)</span> funciones diferenciables en <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span> y <span class="math notranslate nohighlight">\(f(x)\in\mathbb{R}^m.\)</span> Entonces la composición <span class="math notranslate nohighlight">\(h = g\circ f\)</span> es diferenciable en <span class="math notranslate nohighlight">\(x\)</span> y su gradiente está dado por</p>
+<div class="math notranslate nohighlight">
+\[\nabla h(x) = \nabla (g\circ f)(x) = \nabla f(x)^\top\nabla g(f(x)).\]</div>
+</div><p>Esto se puede ilustrar con el siguiente ejemplo.</p>
+<div class="example"><p><p>Regresión Lineal</p>
+</p><p>Consideremos los cuadrados residuales de una regresión lineal de <span class="math notranslate nohighlight">\(n\)</span> puntos de datos <span class="math notranslate nohighlight">\((x_i, y_i)\in\mathbb{R}^d \times \mathbb{R}\)</span> para <span class="math notranslate nohighlight">\(i=1, \ldots, n.\)</span> La regresión lineal busca minimizar la función de pérdida <span class="math notranslate nohighlight">\(f:\mathbb{R}^2\to\mathbb{R}\)</span> dada por</p>
+<div class="math notranslate nohighlight">
+\[f(v) = ||Xv - y||_2^2 = \sum_{i=1}^n (x_i^\top v - y_i)^2,\]</div>
+<p>donde $X = (x_1, <span class="math">\ldots</span>, x_n)^:nbsphinx-math:<cite>top `:nbsphinx-math:</cite>in <cite>M_{n $ es la matriz de datos y :math:`y = (y_1, ldots, y_n)^top</cite> es el vector de etiquetas. La función de pérdida <span class="math notranslate nohighlight">\(f\)</span> es diferenciable y su gradiente está dado por</p>
+<div class="math notranslate nohighlight">
+\[\nabla f(v) = 2X^\top(Xv - y).\]</div>
+</div></section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../index.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Bienvenido a Math &amp; Code</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Derivadas-de-funciones-univariables">Derivadas de funciones univariables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Derivadas-y-continuidad">Derivadas y continuidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Reglas-del-cálculo">Reglas del cálculo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Notación-de-Leibniz">Notación de Leibniz</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Funciones-multivariables">Funciones multivariables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Derivadas-direccionales">Derivadas direccionales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Gradientes">Gradientes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Linealidad-de-los-gradientes">Linealidad de los gradientes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Jacobianos">Jacobianos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#Variaciones-de-la-matriz-Jacobiana">Variaciones de la matriz Jacobiana</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Regla-de-la-cadena">Regla de la cadena</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Alejandro Sánchez Yalí
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Alejandro Sánchez Yalí.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

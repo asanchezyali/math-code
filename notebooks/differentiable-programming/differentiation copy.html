@@ -1,0 +1,655 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Differentiation &#8212; MATH / CODE</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../../_static/documentation_options.js?v=07c12a61"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../_static/translations.js?v=efdbd0b9"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/differentiable-programming/differentiation copy';</script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link href="../../_static/style.css" rel="stylesheet" type="text/css">
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">MATH / CODE</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Búsqueda</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programación Diferenciable</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="differentiation.html">Diferenciación</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/asanchezyali/math-code" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Repositorio de origen"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/differentiable-programming/differentiation copy.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Differentiation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Univariate-differentiation">Univariate differentiation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Derivatives">Derivatives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Calculus-rules">Calculus rules</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Leibniz's-notation">Leibniz’s notation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Multivariate-functions">Multivariate functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Directional-derivatives">Directional derivatives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Gradients">Gradients</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Linearity-of-gradients">Linearity of gradients</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Jacobians">Jacobians</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Differentiation">
+<h1>Differentiation<a class="headerlink" href="#Differentiation" title="Link to this heading">#</a></h1>
+<p><strong>Author:</strong> Alejandro Sánchez Yalí</p>
+<p>In this chapter, we review key differentiation concepts. In particular, we emphasize on the fundamental role played by linear approximations in the context of numerical differentiation. We also discuss the concept of automatic differentiation, which is a powerful tool for computing derivatives of functions implemented in computer programs.</p>
+<section id="Univariate-differentiation">
+<h2>Univariate differentiation<a class="headerlink" href="#Univariate-differentiation" title="Link to this heading">#</a></h2>
+<section id="Derivatives">
+<h3>Derivatives<a class="headerlink" href="#Derivatives" title="Link to this heading">#</a></h3>
+<p>Before studying derivatives, we recall the definition of function continuity.</p>
+<div class="definition"><p><p>Definition 1.1. Continuous function</p>
+</p><p>A function <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span> is <strong>continuous at a point</strong> <span class="math notranslate nohighlight">\(x_0\)</span> if</p>
+<div class="math notranslate nohighlight">
+\[\lim_{x \to x_0} f(x) = f(x_0).\]</div>
+<p>A function <span class="math notranslate nohighlight">\(f\)</span> is <strong>continuous</strong> if it is continuous at every point in its domain.</p>
+</div><p>In the following, we use Landau’s notation to describe the behavior of functions near a point. We write</p>
+<div class="math notranslate nohighlight">
+\[f(x) = o\big(g(x)\big) \quad \text{as} \quad x \to x_0\]</div>
+<p>if</p>
+<div class="math notranslate nohighlight">
+\[\lim_{x \to x_0} \frac{|f(x)|}{|g(x)|} = 0.\]</div>
+<p>That is, <span class="math notranslate nohighlight">\(f(x)\)</span> is much smaller than <span class="math notranslate nohighlight">\(g(x)\)</span> as <span class="math notranslate nohighlight">\(x\)</span> approaches <span class="math notranslate nohighlight">\(x_0.\)</span> For example, <span class="math notranslate nohighlight">\(f\)</span> is continuous at <span class="math notranslate nohighlight">\(x_0\)</span> if</p>
+<div class="math notranslate nohighlight">
+\[f(x_0 + \delta) = f(x_0) + o(1) \quad \text{as} \quad \delta \to 0.\]</div>
+<p>We now introduce the concept of derivative. Consider a function <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span> and a point <span class="math notranslate nohighlight">\(x_0\)</span> in its domain. Its value on an interval <span class="math notranslate nohighlight">\([x_0, x_0 + h]\)</span> can be approximated by the secant between <span class="math notranslate nohighlight">\(\big(x_0, f(x_0)\big)\)</span> and <span class="math notranslate nohighlight">\(\big(x_0 + h, f(x_0 + h)\big)\)</span>. The slope of this <strong>secant</strong> is given by the difference quotient</p>
+<div class="math notranslate nohighlight">
+\[\frac{f(x_0 + h) -
+f(x_0)}{h}.\]</div>
+<p>In the limit of an infinitesimal <span class="math notranslate nohighlight">\(h\)</span>, the secant converges to the <strong>tangent</strong> at <span class="math notranslate nohighlight">\(\big(x_0, f(x_0)\big)\)</span>. The slope of this tangent is the derivative of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(x_0\)</span>, denoted by <span class="math notranslate nohighlight">\(f'(x_0).\)</span> The definition below formalizes this intuition.</p>
+<div class="definition"><p><p>Definition 1.2. Derivative</p>
+</p><p>The <strong>derivative</strong> of a function <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span> at a point <span class="math notranslate nohighlight">\(x_0\)</span> is defined as</p>
+<div class="math notranslate nohighlight">
+\[f'(x_0) = \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h}.\]</div>
+<p>If <span class="math notranslate nohighlight">\(f'(x_0)\)</span> is well-defined at a particular <span class="math notranslate nohighlight">\(x_0\)</span>, we say that the function <span class="math notranslate nohighlight">\(f\)</span> is differentiable at <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+</div><p>Here, and in the following definitions, if <span class="math notranslate nohighlight">\(f\)</span> is differentiable at any <span class="math notranslate nohighlight">\(x\)</span>, we say that it is <strong>differentiable everywhere</strong> of simply <strong>differentiable</strong>. If <span class="math notranslate nohighlight">\(f\)</span> is differentiable at a given <span class="math notranslate nohighlight">\(x\)</span>, then it is necessarily continuous at <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<div class="theorem"><p><p>Theorem 1.1. Differentiability implies continuity</p>
+</p><p>If a function <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span> is differentiable at a point <span class="math notranslate nohighlight">\(x_0\)</span>, then it is continuous at <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+</div><p><em>Proof.</em> The proof follows from the definition of derivative. We have</p>
+<div class="math notranslate nohighlight">
+\[f(x_0 + h) = f(x_0) + f'(x_0)h + o(h) \quad
+\text{as} \quad h \to 0.\]</div>
+<p>Since <span class="math notranslate nohighlight">\(f'(x_0)h + o(h) = o(1)\)</span> as <span class="math notranslate nohighlight">\(h \to 0\)</span>, we have that</p>
+<div class="math notranslate nohighlight">
+\[\lim_{h \to 0} |f(x_0 + h) -
+f(x_0)| = 0.\]</div>
+<p>Therefore, <span class="math notranslate nohighlight">\(f\)</span> is continuous at <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+<p>In addition to enabling the computation of the slope of a function at a point, the derivative provides information about the <strong>mononicity</strong> of <span class="math notranslate nohighlight">\(f\)</span> near that point. For example, if <span class="math notranslate nohighlight">\(f'(x_0) &gt; 0\)</span>, then <span class="math notranslate nohighlight">\(f\)</span> is increasing near <span class="math notranslate nohighlight">\(x_0\)</span>. If <span class="math notranslate nohighlight">\(f'(x_0) &lt; 0\)</span>, then <span class="math notranslate nohighlight">\(f\)</span> is decreasing near <span class="math notranslate nohighlight">\(x_0\)</span>. If <span class="math notranslate nohighlight">\(f'(x_0) = 0\)</span>, then <span class="math notranslate nohighlight">\(f\)</span> has a local extremum at <span class="math notranslate nohighlight">\(x_0\)</span>. Such information can be used to develop iterative algorithms to minimize or maximize <span class="math notranslate nohighlight">\(f\)</span> by
+computing iterates of the form</p>
+<div class="math notranslate nohighlight">
+\[x_{n+1} = x_n - \alpha f'(x_n),\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is a step size. If <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>, the algorithm converges to a local minimum of <span class="math notranslate nohighlight">\(f\)</span>. If <span class="math notranslate nohighlight">\(\alpha &lt; 0,\)</span> it converges to a local maximum. If <span class="math notranslate nohighlight">\(f\)</span> is convex, the algorithm converges to the global minimum.</p>
+<p>For several elementary functions, the derivative can be computed analytically.</p>
+<div class="example"><p><p>Example 1.1. Derivative of power function</p>
+</p><p>The derivative of <span class="math notranslate nohighlight">\(f(x) = x^n\)</span> for <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span> and <span class="math notranslate nohighlight">\(n \in \mathbb{N}\setminus \{0\}\)</span> is given by <span class="math notranslate nohighlight">\(f'(x) = nx^{n-1}\)</span>. In fact, we consider <span class="math notranslate nohighlight">\(f(x) = x^n\)</span> for <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span> and <span class="math notranslate nohighlight">\(n \in \mathbb{N}\setminus \{0\}\)</span>. We have</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}f(x + h) = (x + h)^n = \sum_{k=0}^n \binom{n}{k} x^{n-k} h^k\end{equation}\]</div>
+<p>Therefore,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}\begin{split}f(x + h) - f(x) &amp; = \sum_{k=0}^n \binom{n}{k} x^{n-k} h^k - x^n \\ &amp; = \sum_{k=1}^n \binom{n}{k} x^{n-k} h^k.\end{split}\end{equation}\end{split}\]</div>
+<p>Dividing by <span class="math notranslate nohighlight">\(h\)</span> and taking the limit as <span class="math notranslate nohighlight">\(h \to 0\)</span>, we obtain</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}\begin{split}f'(x) &amp; = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} \\ &amp; = \lim_{h \to 0} \sum_{k=1}^n \binom{n}{k} x^{n-k} h^{k-1} \\ &amp; = nx^{n-1}.\end{split}\end{equation}\end{split}\]</div>
+</div><div class="remark"><p><p>Remark 1.1. Functions on a subset <span class="math notranslate nohighlight">\(U\)</span> of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span></p>
+</p><p>For simplicity, we consider functions <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}.\)</span> However, the concept of derivative can be extended to functions defined on a subset <span class="math notranslate nohighlight">\(U\)</span> of <span class="math notranslate nohighlight">\(\mathbb{R}.\)</span> If a fuction <span class="math notranslate nohighlight">\(f: U \rightarrow \mathbb{R}\)</span> is defined on a subset <span class="math notranslate nohighlight">\(U\)</span> of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, as it is the case for <span class="math notranslate nohighlight">\(f(x) = \sqrt{x}\)</span>, defined on <span class="math notranslate nohighlight">\(U=\mathbb{R}^+,\)</span> the derivative of <span class="math notranslate nohighlight">\(f\)</span> at a point <span class="math notranslate nohighlight">\(x_0 \in U\)</span> is defined on a neighborhood of <span class="math notranslate nohighlight">\(x_0\)</span> contained
+in <span class="math notranslate nohighlight">\(U\)</span>, that is, there exist <span class="math notranslate nohighlight">\(r &gt; 0\)</span> such that <span class="math notranslate nohighlight">\(f\)</span> is differentiable on <span class="math notranslate nohighlight">\(x_0 + \epsilon \in U\)</span> for all <span class="math notranslate nohighlight">\(|\epsilon| &lt; r.\)</span> The function <span class="math notranslate nohighlight">\(f\)</span> is then said <strong>differentiable everywhere</strong> or differentiable for short if it is differentiable at every point in the <strong>interior</strong> of <span class="math notranslate nohighlight">\(U\)</span>, the set of points in <span class="math notranslate nohighlight">\(U\)</span> such that <span class="math notranslate nohighlight">\(\{x + \epsilon: |\epsilon| &lt; r\} \subset U\)</span> for some <span class="math notranslate nohighlight">\(r &gt; 0\)</span>. For points lying at the boundary of <span class="math notranslate nohighlight">\(U\)</span>, the concept of
+derivative is more subtle and requires the definition of <strong>one-sided derivatives</strong>, meaning that the limit in the definition of derivative is taken from the left or from the right. For example, the derivative of <span class="math notranslate nohighlight">\(f(x) = \sqrt{x}\)</span> at <span class="math notranslate nohighlight">\(x=0\)</span> is not defined, since the function is not defined for negative values of <span class="math notranslate nohighlight">\(x\)</span>. However, the derivative of <span class="math notranslate nohighlight">\(f(x) = \sqrt{x}\)</span> at <span class="math notranslate nohighlight">\(x=0\)</span> is defined from the right, and it is equal to <span class="math notranslate nohighlight">\(1/2.\)</span></p>
+</div></section>
+<section id="Calculus-rules">
+<h3>Calculus rules<a class="headerlink" href="#Calculus-rules" title="Link to this heading">#</a></h3>
+<p>For a given <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span> and two functions <span class="math notranslate nohighlight">\(f:\mathbb{R}\to\mathbb{R}\)</span> and <span class="math notranslate nohighlight">\(g:\mathbb{R}\to \mathbb{R},\)</span> the derivative of elementary operations on <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> such as their sums, products or compositions can easily be derived from the definition of the derivative, under appropriate conditions on the differentiability properties of <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> at <span class="math notranslate nohighlight">\(x\)</span>. For example, if the functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are differentiable at <span class="math notranslate nohighlight">\(x,\)</span> then
+the sum <span class="math notranslate nohighlight">\(af + bg\)</span> and the product <span class="math notranslate nohighlight">\(fg\)</span> are differentiable at <span class="math notranslate nohighlight">\(x\)</span> for any <span class="math notranslate nohighlight">\(a, b \in \mathbb{R}\)</span>, and their derivatives are given by</p>
+<ol class="arabic simple">
+<li><p>Linearity: <span class="math notranslate nohighlight">\((af + bg)'(x) = af'(x) + bg'(x).\)</span></p></li>
+<li><p>Product rule: <span class="math notranslate nohighlight">\((fg)'(x) = f'(x)g(x) + f(x)g'(x),\)</span> where <span class="math notranslate nohighlight">\((fg)(x) + f(x)g(x).\)</span></p></li>
+</ol>
+<p>The linearity can be verified directly from the linearity of the limit operator. For the product rule, we have</p>
+<div class="non-display-mobile"><div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}\begin{split} \frac{(fg)(x + h) - (fg)(x)}{h} &amp; = \frac{f(x+h)g(x + h) - \color{red}{f(x)g(x + h)}}{h} \\ &amp; + \frac{{\color{red}f(x)g(x + h)} - fg(x)}{h} \\ &amp; = g(x + h) \frac{f(x + h) - f(x)}{h} \\ &amp; + f(x)
+\frac{g(x + h) - g(x)}{h}.\end{split}\end{equation}\end{split}\]</div>
+</div><div class="non-display-desktop"><div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}\begin{split} &amp; \frac{(fg)(x + h) - (fg)(x)}{h} = \\ &amp; = \frac{f(x+h)g(x + h) - \color{red}{f(x)g(x + h)}}{h} \\ &amp; + \frac{{\color{red}f(x)g(x + h)} - f(x)g(x)}{h} \\ &amp; = g(x + h) \frac{f(x + h) - f(x)}{h} \\ &amp; + f(x)
+\frac{g(x + h) - g(x)}{h}.\end{split}\end{equation}\end{split}\]</div>
+</div><p>If the derivatives of <span class="math notranslate nohighlight">\(g\)</span> at <span class="math notranslate nohighlight">\(x\)</span> and of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(g(x)\)</span> exist, then the derivative of the composition <span class="math notranslate nohighlight">\((f\circ g)(x) = f(g(x))\)</span> at <span class="math notranslate nohighlight">\(x\)</span> is given by the <strong>chain rule</strong>:</p>
+<ol class="arabic simple" start="3">
+<li><p>Chain rule: <span class="math notranslate nohighlight">\((f\circ g)'(x) = f'(g(x))g'(x).\)</span></p></li>
+</ol>
+<p>The chain rule can be derived by considering the limit of the difference quotient of the composition <span class="math notranslate nohighlight">\((f\circ g)(x)\)</span> as <span class="math notranslate nohighlight">\(h \to 0\)</span>:</p>
+<div class="non-display-mobile"><div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}\begin{split} \frac{(f\circ g)(x + h) - (f\circ g)(x)}{h} &amp; = \frac{f(g(x + h)) - f(g(x))}{h} \\ &amp; = \frac{f(g(x + h)) - f(g(x))}{g(x + h) - g(x)} \frac{g(x + h) - g(x)}{h}.\end{split}\end{equation}\end{split}\]</div>
+</div><div class="non-display-desktop"><div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}\begin{split} &amp; \frac{(f\circ g)(x + h) - (f\circ g)(x)}{h} = \\ &amp; = \frac{f(g(x + h)) - f(g(x))}{h} \\ &amp; = \frac{f(g(x + h)) - f(g(x))}{g(x + h) - g(x)} \frac{g(x + h) - g(x)}{h}.\end{split}\end{equation}\end{split}\]</div>
+</div><p>As seen in the sequel, the linearity and the product rule can be seen as byproducts of the chain rule, making the chain rule the cornerstone of differentiation.</p>
+<p>For now, consider a function that can be expressed as sums, products aor compositions of elementary functions such as <span class="math notranslate nohighlight">\(f(x) = \exp(x) \ln(x) + \cos x^2.\)</span> Its derivative can be computed by applying the aforementioned rules on the decomposition of <span class="math notranslate nohighlight">\(f\)</span> into elementary operations and functions.</p>
+<div class="example"><p><p>Example 1.2. Applying rules of differentiation</p>
+</p><p>Consider the function <span class="math notranslate nohighlight">\(f(x) = \exp(x) \ln(x) + \cos x^2.\)</span> We have</p>
+<div class="math notranslate nohighlight">
+\[f'(x) = \exp(x) \ln(x) + \exp(x) \frac{1}{x} - 2x \sin x^2.\]</div>
+<p>The derivative of <span class="math notranslate nohighlight">\(f\)</span> on <span class="math notranslate nohighlight">\(x &gt; 0\)</span> can be computed step by step as follows, denoting <span class="math notranslate nohighlight">\(\operatorname*{sq}(x) := x^2\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}\begin{split}f'(x) &amp;  = (\exp \cdot \ln)'(x) + (\cos \circ \operatorname*{sq})'(x) \\ &amp; = \exp'(x) \ln(x) + \exp(x) \ln'(x) + \cos'(\operatorname*{sq}(x)) \operatorname*{sq}'(x) \\ &amp; = \exp(x) \ln(x) + \exp(x) \frac{1}{x} - 2x \sin x^2.\end{split}\end{equation}\end{split}\]</div>
+</div></section>
+<section id="Leibniz's-notation">
+<h3>Leibniz’s notation<a class="headerlink" href="#Leibniz's-notation" title="Link to this heading">#</a></h3>
+<p>The notion of derivative was first introduced independently by Isaac Newton and Gottfried Wilhelm Leibniz in the 18th century. The latter considered derivatives as the quotient of infinitesimals variations. Namely, denoting <span class="math notranslate nohighlight">\(y = f(x)\)</span> a variable depending on <span class="math notranslate nohighlight">\(x\)</span> through <span class="math notranslate nohighlight">\(f\)</span>, Leibniz considered the derivative of <span class="math notranslate nohighlight">\(f\)</span> as the quotient:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f' = \frac{dy}{dx} \quad \text{with} \quad f'(x) = \left. \frac{df}{dx}\\\right|_{x}.\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(dy\)</span> and <span class="math notranslate nohighlight">\(dx\)</span> are infinitesimal variations of <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(x\)</span>, respectively and the symbol <span class="math notranslate nohighlight">\(\left. \frac{df}{dx}\\\right|_{x}\)</span> denotes the derivative of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(x\)</span>. The notation <span class="math notranslate nohighlight">\(\frac{dy}{dx}\)</span> is called <strong>Leibniz’s notation</strong>. It is particularly useful to express the chain rule, as it allows to express the derivative of a composition of functions as the product of the derivatives of the functions involved in the composition. If we have for
+<span class="math notranslate nohighlight">\(z = g(y)\)</span> and <span class="math notranslate nohighlight">\(y = f(x)\)</span>, then the chain rule can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[\frac{dz}{dx} = \frac{dz}{dy} \frac{dy}{dx}.\]</div>
+<p>This hints that derivatives are multiplied when considering compositions of functions. At evaluation, the chain rule in Leibniz notation recovers the formula presented above as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left. \frac{dz}{dx}\\\right|_{x} = \left. \frac{dz}{dy}\\\right|_{y} \left. \frac{dy}{dx}\\\right|_{x} =
+g'(f(x))f'(x) = (g\circ f)'(x).\end{split}\]</div>
+</section>
+</section>
+<section id="Multivariate-functions">
+<h2>Multivariate functions<a class="headerlink" href="#Multivariate-functions" title="Link to this heading">#</a></h2>
+<section id="Directional-derivatives">
+<h3>Directional derivatives<a class="headerlink" href="#Directional-derivatives" title="Link to this heading">#</a></h3>
+<p>Let us now consider a function <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> of multiple inputs <span class="math notranslate nohighlight">\(x = (x_1, \ldots, x_n) \in \mathbb{R}^n\)</span>. The most important example in machibne learning is a functions which, to the parameters <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span> of a neural network, associates the loss value in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>. Variations of <span class="math notranslate nohighlight">\(f\)</span> need to be defined along specific directions in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, such as the variation <span class="math notranslate nohighlight">\(f(x + \delta v) - f(x)\)</span> of <span class="math notranslate nohighlight">\(f\)</span> around
+<span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span> in the direction <span class="math notranslate nohighlight">\(v\in\mathbb{R}^n\)</span>. This consideration naturally leads to the definition of the directional derivative of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(x\)</span> in the direction <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<div class="definition"><p><p>Definition 1.3. Directional derivative</p>
+</p><p>The <strong>directional derivative</strong> of a function <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> at a point <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span> in the direction <span class="math notranslate nohighlight">\(v \in \mathbb{R}^n\)</span> is defined as</p>
+<div class="math notranslate nohighlight">
+\[\partial f(x)[v] = \lim_{h \to 0} \frac{f(x + hv) - f(x)}{h}.\]</div>
+<p>If the limit exists, we say that <span class="math notranslate nohighlight">\(f\)</span> is differentiable at <span class="math notranslate nohighlight">\(x\)</span> in the direction <span class="math notranslate nohighlight">\(v\)</span>.</p>
+</div><p>One example of directional derivative consists in computing the derivative of a function <span class="math notranslate nohighlight">\(f\)</span> at a point <span class="math notranslate nohighlight">\(x\)</span> in any of the canonical directions <span class="math notranslate nohighlight">\(e_i\)</span> of <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, where <span class="math notranslate nohighlight">\(e_i\)</span> is the vector with a <span class="math notranslate nohighlight">\(1\)</span> at the <span class="math notranslate nohighlight">\(i\)</span>-th position and <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>This allows us to define the notion of <strong>partial derivatives</strong>, denoted for <span class="math notranslate nohighlight">\(i = 1, \ldots, n\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[\partial_i f(x)
+:=\partial f(x)[e_i] = \lim_{h \to 0} \frac{f(x + he_i) - f(x)}{h}.\]</div>
+<p>This also denoted in Leibniz’s notation by <span class="math notranslate nohighlight">\(\partial_i f(x) = \frac{\partial f}{\partial x_i}(x)\)</span> or <span class="math notranslate nohighlight">\(\partial_i f(x) = \partial_{x_i} f(x).\)</span> By moving along only the <span class="math notranslate nohighlight">\(i\)</span>-th coordinate of the function, the partial derivative is akin to using the function <span class="math notranslate nohighlight">\(\phi(x_i)=f(x_1, \cdots, x_n)\)</span> around <span class="math notranslate nohighlight">\(x_i\)</span>, letting all other coordinates fixed at their values <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
+</section>
+<section id="Gradients">
+<h3>Gradients<a class="headerlink" href="#Gradients" title="Link to this heading">#</a></h3>
+<p>We now introduce the gradient vector, which gathers the partial derivatives. We first recall the definitions of linear map and linear form.</p>
+<div class="definition"><p><p>Definition 1.4. Linear map, linear form</p>
+</p><p>A <strong>linear map</strong> <span class="math notranslate nohighlight">\(A: \mathbb{R}^n \rightarrow \mathbb{R}^m\)</span> is a function that satisfies the following properties for all <span class="math notranslate nohighlight">\(x, y \in \mathbb{R}^n\)</span> and <span class="math notranslate nohighlight">\(\alpha, \beta \in \mathbb{R}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[A(\alpha x + \beta y) = \alpha A(x) + \beta A(y).\]</div>
+<p>A <strong>linear form</strong> is a linear map <span class="math notranslate nohighlight">\(A: \mathbb{R}^n \rightarrow \mathbb{R}\)</span>.</p>
+</div><p>Linearity plays a crucial role in the differentiability of a function.</p>
+<div class="definition"><p><p>Definition 1.5. Differentiability, single-output case</p>
+</p><p>A function <span class="math notranslate nohighlight">\(f:\mathbb{R}^{n}\to \mathbb{R}\)</span> is differentiable at <span class="math notranslate nohighlight">\(x\in \mathbb{R}\)</span> if its directional derivative is defined along any direction <span class="math notranslate nohighlight">\(v\in\mathbb{R}^n\)</span>, linear in any direction, and if</p>
+<div class="math notranslate nohighlight">
+\[\lim_{||v||_{2}\to 0}\frac{|f(x + v) - f(x) - \partial f(x)[v]|}{||v||_{2}} = 0\]</div>
+</div><p>We can now introduce the gradient.</p>
+<div class="definition"><p><p>Definition 1.6. Gradient</p>
+</p><p>The <strong>gradient</strong> of a differentiable function <span class="math notranslate nohighlight">\(f:\mathbb{R}^n\to \mathbb{R}\)</span> at a point <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span> is defined as the vector of partial derivatives</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\nabla f(x) = \begin{pmatrix} \partial_1 f(x) \\ \vdots \\ \partial_n f(x) \end{pmatrix} = \begin{pmatrix} \partial f(x)[e_1] \\ \vdots \\ \partial f(x)[e_n] \end{pmatrix}.\end{split}\]</div>
+<p>By linearity, the directional derivative of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(x\)</span> in the direction <span class="math notranslate nohighlight">\(v=\sum_{i=1}^n v_i e_i\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[\partial f(x)[v] = \sum_{i=1}^n v_i\partial_i f(x)[e_i] = \langle v, \nabla f(x) \rangle.\]</div>
+</div><p>In the definition above, the fact that the gradient can be used to compute the directional derivative is a mere consequence of the linearity. However, in more abstract cased presented in later sections, the gradient is defined through this property.</p>
+<p>As a simple example, any linear function of the form <span class="math notranslate nohighlight">\(f(x)=a^\top x = \sum_{i=1}^{n}a_i x_i\)</span> is differentiable as we have <span class="math notranslate nohighlight">\((a^\top(x+v) - a^\top x - a^\top v)/||v||_2 = 0\)</span> for any <span class="math notranslate nohighlight">\(v\)</span> adn in particular for <span class="math notranslate nohighlight">\(||v||\to 0\)</span>. Moreover, its gradient is naturally given by <span class="math notranslate nohighlight">\(\nabla f(x) = a.\)</span></p>
+<p>Generally, to show that a function is differentiable and find its gradient, one approach is to approximate <span class="math notranslate nohighlight">\(f(x + v)\)</span> around <span class="math notranslate nohighlight">\(v = 0\)</span>. If we can find a vector <span class="math notranslate nohighlight">\(g\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[f(x + v) = f(x) + \langle g, v\rangle + o(||v||_2),\]</div>
+<p>then <span class="math notranslate nohighlight">\(f\)</span> is differentiable at <span class="math notranslate nohighlight">\(x\)</span> since <span class="math notranslate nohighlight">\(\langle g, \cdot \rangle\)</span> is linear. Moreover, <span class="math notranslate nohighlight">\(g\)</span> is then the gradient of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<div class="remark"><p><p>Remark 1.2. Gateux and Fréchet differentiability</p>
+</p><p>Multiple definitions of differentiability exist. The one presented in Definition 1.5 is about <strong>Fréchet differentiable</strong> functions. Alternatively, if <span class="math notranslate nohighlight">\(f:\mathbb{R}^p \to \mathbb{R}\)</span> has well-defined directional derivatives along any directions then the function is <strong>Gateaux differentiable</strong>. Note that the existence of directional derivatives in any directions is not a sufficient condition for the function to be differentiable. In other words, any Fréchet differentiable function is Gateaux
+differentiable, but the converse is not true. As a counter-example, one can verify that function</p>
+<div class="math notranslate nohighlight">
+\[f(x_1, x_2)=\frac{x_1^3}{x_1^2 + x_2^2}\]</div>
+<p>is Gateaux differentiable at <span class="math notranslate nohighlight">\(0\)</span> but not Fréchet differentiable at <span class="math notranslate nohighlight">\(0\)</span> (because the directional derivative at 0 is no linear).</p>
+<p>Somo author also require Gateux differentiable functions to have linear directional derivatives along any direction. These are still not Fréchet differentiable functions. Indeed, the limit in Definition 1.5 is over any vectors tending to 0 (potentially in a pathological way), while directional derivatives look at such limits uniquely in terms of a single direction.</p>
+<p>In the remainder of this chapter, all definitions of differentiability are in terms of Fréchet differentiability.</p>
+</div><p>Example 1.3 illustrates how to compute the gradient of the logistic loss and validate its differentiability.</p>
+<div class="example"><p><p>Example 1.3. Gradient of logistic loss</p>
+</p><p>Consider the logistic loss</p>
+<div class="math notranslate nohighlight">
+\[l(\theta, y) := -y^\top \theta + \log\left(\sum_{k=1}^m \exp(\theta_k)\right),\]</div>
+<p>that measures the prediction error of the logits <span class="math notranslate nohighlight">\(\theta\in\mathbb{R}^m\)</span> for a target <span class="math notranslate nohighlight">\(y\in\{e_1, \ldots, e_m\}.\)</span> Let us compute the gradient of this loss. We want to compute the gradient of <span class="math notranslate nohighlight">\(f(\theta):=l(\theta, y)\)</span>. Let us decompose <span class="math notranslate nohighlight">\(f\)</span> as <span class="math notranslate nohighlight">\(f = f + \operatorname*{logsumexp}\)</span> with <span class="math notranslate nohighlight">\(l(\theta):=\langle -y, \theta\rangle\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[\operatorname*{logsumexp}(\theta) := \log\left(\sum_{k=1}^m \exp(\theta_k)\right),\]</div>
+<p>the log-sum-exp function. The function <span class="math notranslate nohighlight">\(l\)</span> is linear so differentiable with gradient <span class="math notranslate nohighlight">\(\nabla l(\theta) = -y.\)</span> We therefore focus <span class="math notranslate nohighlight">\(\operatorname*{logsumexp}.\)</span> Denoting <span class="math notranslate nohighlight">\(\exp(\theta) = (\exp(\theta_1), \ldots, \exp(\theta_m)),\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}\nabla \operatorname*{logsumexp}(\theta) = \frac{\exp(\theta)}{\sum_{k=1}^m \exp(\theta_k)} = \operatorname*{softmax}(\theta),\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\operatorname*{softmax}(\theta)\)</span> is the softmax function. The gradient of the logistic loss is then given by</p>
+<div class="math notranslate nohighlight">
+\[\nabla l(\theta) = -y + \operatorname*{softmax}(\theta).\]</div>
+</div></section>
+<section id="Linearity-of-gradients">
+<h3>Linearity of gradients<a class="headerlink" href="#Linearity-of-gradients" title="Link to this heading">#</a></h3>
+<p>The notion of differentiability for multi-inputs functions naturally inherits from the linearity of derivatives for single-input functions. For any <span class="math notranslate nohighlight">\(u_1, \dots, u_n\in\mathbb{R}\)</span> and any multi-inputs functions <span class="math notranslate nohighlight">\(f_1, \dots f_n\)</span> that are differentiable at <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span>, the function <span class="math notranslate nohighlight">\(f(x) = \sum_{i=1}^n u_i f_i(x)\)</span> is differentiable at <span class="math notranslate nohighlight">\(x\)</span> with gradient <span class="math notranslate nohighlight">\(\nabla f(x) = \sum_{i=1}^n u_i \nabla f_i(x).\)</span> This property is a direct consequence of the linearity of
+the gradient.</p>
+<div class="theorem"><p><p>Theorem 1.2. Linearity of gradients</p>
+</p><p>Let <span class="math notranslate nohighlight">\(f_1, \ldots, f_n:\mathbb{R}^n\to\mathbb{R}\)</span> be differentiable functions at <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span> and <span class="math notranslate nohighlight">\(u_1, \ldots, u_n\in\mathbb{R}\)</span>. Then the function <span class="math notranslate nohighlight">\(f(x) = \sum_{i=1}^n u_i f_i(x)\)</span> is differentiable at <span class="math notranslate nohighlight">\(x\)</span> with gradient <span class="math notranslate nohighlight">\(\nabla f(x) = \sum_{i=1}^n u_i \nabla f_i(x).\)</span></p>
+</div><p>The gradient defines the steepest ascent direction of a function. To see why, notice that</p>
+<div class="math notranslate nohighlight">
+\[\operatorname*{argmax}_{v\in\mathbb{R}^n, ||v||_2\leq 1} \partial f(x)[v] = \operatorname*{argmax}_{v\in\mathbb{R}^n,
+||v||_2\leq 1} \langle v, \nabla f(x)\rangle = \frac{\nabla f(x)}{||\nabla f(x)||_2},\]</div>
+<p>where we assumed that <span class="math notranslate nohighlight">\(\nabla f(x)\neq 0\)</span> to avoid division by zero. The gradient <span class="math notranslate nohighlight">\(\nabla f(x)\)</span> is orthogonal to the level set of the function <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(x\)</span>, meaning that the gradient points in the direction of the steepest ascent of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(x\)</span>. Conversely, the negative gradient <span class="math notranslate nohighlight">\(-\nabla f(x)\)</span> points in the direction of the steepest descent of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(x\)</span>. This observation motivates the development of optimization algorithms such as gradient
+descent, which iteratively updates the parameters <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(x_{n+1} = x_n - \alpha \nabla f(x_n)\)</span>, where <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span> is a step size. It therefore seeks for the minimum of <span class="math notranslate nohighlight">\(f\)</span> by following the steepest descent direction.</p>
+</section>
+<section id="Jacobians">
+<h3>Jacobians<a class="headerlink" href="#Jacobians" title="Link to this heading">#</a></h3>
+<p>Let us now consider a multi-output function <span class="math notranslate nohighlight">\(f:\mathbb{R}^n\to\mathbb{R}^m\)</span> defined by <span class="math notranslate nohighlight">\(f(x) = (f_1(x), \ldots, f_m(x))\)</span>, where <span class="math notranslate nohighlight">\(f_i:\mathbb{R}^n \to \mathbb{R}\)</span> for <span class="math notranslate nohighlight">\(i = 1, \ldots, m\)</span>. A typical example in machine learning is a neural network. The notion of directional derivative can be extended to such function by defining the <strong>Jacobian matrix</strong> of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(x\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\partial f(x)[v] = \lim_{h\to 0} \frac{f(x + hv) - f(x)}{h} = \begin{pmatrix} \partial f_1(x)[v] \\ \vdots \\ \partial
+f_m(x)[v] \end{pmatrix} = \begin{pmatrix} \langle v, \nabla f_1(x)\rangle \\ \vdots \\ \langle v, \nabla f_m(x)\rangle
+\end{pmatrix} = \begin{pmatrix} \nabla f_1(x)^\top v \\ \vdots \\ \nabla f_m(x)^\top v \end{pmatrix} = \nabla f(x)^\top
+v.\end{split}\]</div>
+<p>where the limits are applied coordinate-wise. The directional derivative of <span class="math notranslate nohighlight">\(f\)</span> in the direction <span class="math notranslate nohighlight">\(v\in\mathbb{R}^n\)</span> is therefore the vector that gathers the directional derivatives of each <span class="math notranslate nohighlight">\(f_j\)</span>, i.e., <span class="math notranslate nohighlight">\(\nabla f(x)[v] = (\partial f_i(v)[v])_{i=1}^m.\)</span> The directional derivative of <span class="math notranslate nohighlight">\(f\)</span> in the direction <span class="math notranslate nohighlight">\(v\in \mathbb{R}^n\)</span> is therefore the vector that gathers the directional derivatives of each <span class="math notranslate nohighlight">\(f_i\)</span>, i.e.,
+<span class="math notranslate nohighlight">\(\nabla f(x)[v] = (\partial f_i(v)[v])_{i=1}^m.\)</span> In particular, we can define the <strong>partial derivatives</strong> of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(x\)</span> as the vectors</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\partial_i f(x) = \begin{pmatrix} \partial f_1(x)[e_i] \\ \vdots \\ \partial f_m(x)[e_i] \end{pmatrix} =
+\begin{pmatrix}
+\partial f_1(x)[e_i] \\
+\vdots \\
+\partial f_m(x)[e_i]
+\end{pmatrix} = \begin{pmatrix} \nabla f_1(x)^\top e_i \\ \vdots \\ \nabla f_m(x)^\top e_i \end{pmatrix} = \begin{pmatrix} \partial f_1(x)[e_i] \\ \vdots \\ \partial f_m(x)[e_i] \end{pmatrix} = \begin{pmatrix} \partial f_1(x)[e_i] \\ \vdots \\ \partial f_m(x)[e_i] \end{pmatrix} = \begin{pmatrix} \nabla f_1(x)^\top e_i \\ \vdots \\ \nabla f_m(x)^\top e_i \end{pmatrix}.\end{split}\]</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Univariate-differentiation">Univariate differentiation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Derivatives">Derivatives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Calculus-rules">Calculus rules</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Leibniz's-notation">Leibniz’s notation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Multivariate-functions">Multivariate functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Directional-derivatives">Directional derivatives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Gradients">Gradients</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Linearity-of-gradients">Linearity of gradients</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Jacobians">Jacobians</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Alejandro Sánchez Yalí
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Alejandro Sánchez Yalí.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
